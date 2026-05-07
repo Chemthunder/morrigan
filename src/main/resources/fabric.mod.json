@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "morrigan",
+  "version": "${version}",
+  "name": "Morrigan",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "license": "CC0-1.0",
+  "icon": "assets/morrigan/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.peak.morrigan.impl.Morrigan"
+    ],
+    "client": [
+      "com.peak.morrigan.impl.MorriganClient"
+    ],
+    "fabric-datagen": [
+      "com.peak.morrigan.data.MorriganDataGen"
+    ],
+    "cardinal-components": [
+      "com.peak.morrigan.impl.cca.MorriganComponents"
+    ]
+  },
+  "mixins": [
+    "morrigan.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+
+  "custom": {
+    "cardinal-components": [
+      "morrigan:pocketwatch_box"
+    ]
+  }
+}
