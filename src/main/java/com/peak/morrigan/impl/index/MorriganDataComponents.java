@@ -9,7 +9,7 @@ import net.acoyt.acornlib.api.registrants.ComponentTypeRegistrant;
 public interface MorriganDataComponents {
     ComponentTypeRegistrant COMPONENTS = new ComponentTypeRegistrant(Morrigan.MOD_ID);
 
-    
+
 
     static void init() {}
 }
