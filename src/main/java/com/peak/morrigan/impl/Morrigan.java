@@ -2,10 +2,7 @@ package com.peak.morrigan.impl;
 
 import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
-import com.peak.morrigan.impl.index.MorriganEntities;
-import com.peak.morrigan.impl.index.MorriganItems;
-import com.peak.morrigan.impl.index.MorriganNetworking;
-import com.peak.morrigan.impl.index.MorriganSounds;
+import com.peak.morrigan.impl.index.*;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.text.Style;
@@ -22,6 +19,7 @@ public class Morrigan implements ModInitializer {
         MorriganItems.init();
         MorriganSounds.init();
         MorriganEntities.init();
+        MorriganOaths.init();
 
         MorriganNetworking.registerTypes();
 
@@ -36,3 +34,10 @@ public class Morrigan implements ModInitializer {
         return TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT));
     }
 }
+
+/*
+ * NOTES
+ *
+ * A giant screen (accessed with =) that shows you your current Oath, who inflicted it on you (your owner), and the effects.
+ * Add sacrificng, killing a player with the Sacrifices Effigy to sign them through.
+ */
