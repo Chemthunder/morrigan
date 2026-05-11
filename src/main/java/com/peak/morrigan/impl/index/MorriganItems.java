@@ -3,7 +3,7 @@ package com.peak.morrigan.impl.index;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.item.CelestialPocketwatchItem;
 import com.peak.morrigan.impl.item.DreamcatcherItem;
-import com.peak.morrigan.impl.item.SacrificesEffigyItem;
+import com.peak.morrigan.impl.item.SacrificialCleaverItem;
 import net.acoyt.acornlib.api.registrants.ItemRegistrant;
 import net.minecraft.item.Item;
 
@@ -13,9 +13,9 @@ import net.minecraft.item.Item;
 public interface MorriganItems {
     ItemRegistrant ITEMS = new ItemRegistrant(Morrigan.MOD_ID);
 
-    Item SACRIFICES_EFFIGY = ITEMS.register("sacrifices_effigy", SacrificesEffigyItem::new, new Item.Settings()
+    Item SACRIFICIAL_CLEAVER = ITEMS.register("sacrificial_cleaver", SacrificialCleaverItem::new, new Item.Settings()
             .maxCount(1)
-            .attributeModifiers(SacrificesEffigyItem.createAttributeModifiers())
+            .attributeModifiers(SacrificialCleaverItem.createAttributeModifiers())
     );
 
     Item DREAMCATCHER = ITEMS.register("dreamcatcher", DreamcatcherItem::new, new Item.Settings()

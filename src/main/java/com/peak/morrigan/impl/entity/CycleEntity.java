@@ -1,16 +1,11 @@
 package com.peak.morrigan.impl.entity;
 
 import com.peak.morrigan.impl.index.MorriganEntities;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.projectile.thrown.ThrownEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 /**
  * @author Chemthunder

@@ -19,7 +19,6 @@ public class MorriganModelGen extends FabricModelProvider {
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(MorriganItems.CELESTIAL_POCKETWATCH, Models.GENERATED);
-        itemModelGenerator.register(MorriganItems.SACRIFICES_EFFIGY, Models.GENERATED);
         itemModelGenerator.register(MorriganItems.DREAMCATCHER, Models.GENERATED);
     }
 }

@@ -1,6 +1,13 @@
 {
+  "category.morrigan": "Morrigan",
   "item.morrigan.celestial_pocketwatch": "Celestial Pocketwatch",
   "item.morrigan.dreamcatcher": "Dreamcatcher",
-  "item.morrigan.sacrifices_effigy": "Sacrifices Effigy",
-  "oath.morrigan.test": "Test"
+  "item.morrigan.sacrificial_cleaver": "Sacrificial Cleaver",
+  "itemGroup.morrigan": "Morrigan",
+  "key.morrigan.open_cultist_display_screen": "Open Cultist Screen",
+  "morrigan.cult_screen.title": "Church of the Nevermore",
+  "oath.morrigan.priestess_gaze.description": "Lay down one's soul to Fesscinenne's will.",
+  "oath.morrigan.priestess_gaze.title": "Bind of the Priestess' Gaze",
+  "oath.morrigan.returning_roots.description": "Take back from whence you came.",
+  "oath.morrigan.returning_roots.title": "Oath of Returning Roots"
 }

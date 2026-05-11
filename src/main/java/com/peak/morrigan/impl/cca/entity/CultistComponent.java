@@ -20,6 +20,7 @@ public class CultistComponent implements AutoSyncedComponent {
 
     private boolean cultist = false;
     private Oath swornOath = Oath.EMPTY;
+    private String leader = "";
 
     public CultistComponent(PlayerEntity player) {
         this.player = player;
@@ -31,10 +32,10 @@ public class CultistComponent implements AutoSyncedComponent {
 
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         this.cultist = nbt.getBoolean("Cultist");
+        this.leader = nbt.getString("Leader");
 
         if (nbt.contains("SwornOath", NbtElement.COMPOUND_TYPE)) {
-            NbtCompound compound = nbt.getCompound("SwornOath");
-            this.swornOath = Oath.CODEC.parse(wrapperLookup.getOps(NbtOps.INSTANCE), compound).resultOrPartial(Morrigan.LOGGER::error).orElseThrow();
+            this.swornOath = Oath.CODEC.parse(wrapperLookup.getOps(NbtOps.INSTANCE), nbt.getCompound("SwornOath")).resultOrPartial(Morrigan.LOGGER::error).orElseThrow();
         } else {
             this.swornOath = Oath.EMPTY;
         }
@@ -42,6 +43,7 @@ public class CultistComponent implements AutoSyncedComponent {
 
     public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbt.putBoolean("Cultist", cultist);
+        nbt.putString("Leader", leader);
 
         if (this.swornOath != Oath.EMPTY) {
             nbt.put("SwornOath", Oath.CODEC.encodeStart(wrapperLookup.getOps(NbtOps.INSTANCE), this.swornOath).getOrThrow());
@@ -56,6 +58,10 @@ public class CultistComponent implements AutoSyncedComponent {
         return this.cultist;
     }
 
+    public String getLeader() {
+        return this.leader;
+    }
+
     public void swearOath(Oath oath) {
         this.swornOath = oath;
         this.sync();
@@ -64,5 +70,9 @@ public class CultistComponent implements AutoSyncedComponent {
     public void setCultist(boolean bl) {
         this.cultist = bl;
         this.sync();
+    }
+
+    public void setLeader(String leader) {
+        this.leader = leader;
     }
 }

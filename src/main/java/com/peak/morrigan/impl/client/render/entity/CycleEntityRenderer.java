@@ -1,6 +1,5 @@
 package com.peak.morrigan.impl.client.render.entity;
 
-import com.nitron.nitrogen.render.RenderUtils;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.entity.CycleEntity;
 import com.peak.morrigan.impl.util.MorriganContext;

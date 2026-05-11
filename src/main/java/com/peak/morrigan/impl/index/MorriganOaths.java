@@ -1,10 +1,8 @@
 package com.peak.morrigan.impl.index;
 
 import com.peak.morrigan.api.Oath;
-import com.peak.morrigan.impl.Morrigan;
-import net.acoyt.acornlib.api.util.MiscUtils;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +13,21 @@ import java.util.List;
 public interface MorriganOaths {
     List<Oath> OATHS = new ArrayList<>();
 
-    Oath TEST = create("test", Text.empty(), Text.empty());
+    Oath PRIESTESS_GAZE = create("priestess_gaze", 0xFFac42ff,
+            Text.translatable("oath.morrigan.priestess_gaze.title").withColor(0xFFac42ff),
+            Text.translatable("oath.morrigan.priestess_gaze.description").formatted(Formatting.DARK_GRAY)
+    );
 
-    static Oath create(String id, Text title, Text desc) {
-        Oath gen = new Oath(id, title, desc);
+    Oath RETURNING_ROOTS = create("returning_roots", 0xFF67edcd,
+            Text.translatable("oath.morrigan.returning_roots.title").withColor(0xFF67edcd),
+            Text.translatable("oath.morrigan.returning_roots.description").formatted(Formatting.DARK_GRAY)
+    );
+
+    static Oath create(String id, int color, Text title, Text desc) {
+        Oath gen = new Oath(id, color, title, desc);
         OATHS.add(gen);
         return gen;
     }
 
     static void init() {}
-
-    static void registerLang(FabricLanguageProvider.TranslationBuilder translationBuilder) {
-        OATHS.forEach(oath -> {
-            translationBuilder.add("oath." + Morrigan.MOD_ID + "." + oath.id(), MiscUtils.formatString(oath.id()));
-        });
-    }
 }

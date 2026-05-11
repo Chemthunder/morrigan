@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "morrigan:item/sacrificial_cleaver",
+    "layer1": "morrigan:item/sacrificial_cleaver_eyes"
+  }
+}

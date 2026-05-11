@@ -3,7 +3,6 @@ package com.peak.morrigan.data;
 import com.peak.morrigan.data.provider.MorriganDynamicRegistriesGen;
 import com.peak.morrigan.data.provider.resources.MorriganModelGen;
 import com.peak.morrigan.data.provider.resources.lang.MorriganLangGen;
-import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.index.data.MorriganDamageTypes;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

@@ -2,9 +2,15 @@ package com.peak.morrigan.impl;
 
 import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
+import com.mojang.brigadier.Command;
+import com.peak.morrigan.api.Oath;
+import com.peak.morrigan.impl.cca.entity.CultistComponent;
 import com.peak.morrigan.impl.index.*;
+import com.peak.morrigan.impl.util.MorriganKeybindings;
 import net.fabricmc.api.ModInitializer;
-
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -20,10 +26,29 @@ public class Morrigan implements ModInitializer {
         MorriganSounds.init();
         MorriganEntities.init();
         MorriganOaths.init();
+        MorriganDataComponents.init();
+        MorriganItemGroups.init();
 
         MorriganNetworking.registerTypes();
 
+        MorriganKeybindings.register();
+
 		LOGGER.info("Hello Fabric world!");
+
+        CommandRegistrationCallback.EVENT.register((commandDispatcher, commandRegistryAccess, registrationEnvironment) -> {
+            commandDispatcher.register(CommandManager.literal("morrigan")
+                    .then(CommandManager.literal("clear").executes(context -> {
+                        PlayerEntity player = context.getSource().getPlayerOrThrow();
+                        CultistComponent cultistComponent = CultistComponent.KEY.get(player);
+
+                        cultistComponent.setLeader("");
+                        cultistComponent.setCultist(false);
+                        cultistComponent.swearOath(Oath.EMPTY);
+
+                        return Command.SINGLE_SUCCESS;
+                    }))
+            );
+        });
 	}
 
     public static Identifier id(String path) {

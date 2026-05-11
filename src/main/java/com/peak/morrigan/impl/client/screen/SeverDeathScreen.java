@@ -2,8 +2,6 @@ package com.peak.morrigan.impl.client.screen;
 
 import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
-import net.chemthunder.lux.api.LuxFlashRenderer;
-import net.chemthunder.lux.impl.util.Easing;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;

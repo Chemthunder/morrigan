@@ -3,7 +3,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:item/generated",
 	"textures": {
-		"layer0": "morrigan:item/sacrifices_effigy_handheld"
+      "layer0": "morrigan:item/sacrificial_cleaver_handheld",
+      "layer1": "morrigan:item/sacrificial_cleaver_handheld_eyes"
 	},
 	"display": {
 		"thirdperson_righthand": {
