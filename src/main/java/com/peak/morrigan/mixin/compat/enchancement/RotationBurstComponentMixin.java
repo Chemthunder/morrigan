@@ -3,7 +3,6 @@ package com.peak.morrigan.mixin.compat.enchancement;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
-import moriyashiine.enchancement.common.component.entity.DirectionBurstComponent;
 import moriyashiine.enchancement.common.component.entity.RotationBurstComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Final;

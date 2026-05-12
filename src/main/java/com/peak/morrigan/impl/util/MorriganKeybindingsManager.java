@@ -2,7 +2,6 @@ package com.peak.morrigan.impl.util;
 
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;

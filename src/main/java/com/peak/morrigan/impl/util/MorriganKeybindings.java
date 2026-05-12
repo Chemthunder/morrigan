@@ -1,10 +1,8 @@
 package com.peak.morrigan.impl.util;
 
-import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.client.screen.CultDisplayScreen;
-import com.peak.morrigan.impl.index.MorriganOaths;
 import com.peak.morrigan.impl.networking.c2s.TriggerAbilityPayload;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;

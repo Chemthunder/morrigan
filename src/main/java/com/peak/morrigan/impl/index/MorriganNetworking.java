@@ -1,7 +1,7 @@
 package com.peak.morrigan.impl.index;
 
-import com.peak.morrigan.impl.networking.s2c.LoadDeathScreenPayload;
 import com.peak.morrigan.impl.networking.c2s.TriggerAbilityPayload;
+import com.peak.morrigan.impl.networking.s2c.LoadDeathScreenPayload;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;

@@ -4,7 +4,6 @@ import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.MorriganOaths;
-import com.peak.morrigan.impl.util.MorriganKeybindings;
 import com.peak.morrigan.impl.util.MorriganKeybindingsManager;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
