@@ -2,7 +2,7 @@ package com.peak.morrigan.impl.client.screen;
 
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
-import com.peak.morrigan.impl.cca.entity.CultistComponent;
+import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;

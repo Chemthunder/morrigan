@@ -1,6 +1,10 @@
 package com.peak.morrigan.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import com.peak.morrigan.impl.item.SacrificialCleaverItem;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
@@ -10,12 +14,16 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements Attackable {
+    @Shadow
+    public float forwardSpeed;
+
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
@@ -38,5 +46,23 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
                 }
             }
         }
+    }
+
+    @WrapOperation(
+            method = "baseTick",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
+                    ordinal = 2
+            )
+    )
+    private boolean morrigan$preventDrowning(LivingEntity instance, DamageSource source, float amount, Operation<Boolean> original) {
+        if (instance instanceof PlayerEntity player) {
+            if (CultistComponent.KEY.get(player).getOath().equals(MorriganOaths.PERSEVERING_WILL)) {
+                return original.call(instance, source, 0.0f);
+            }
+        }
+
+        return original.call(instance, source, amount);
     }
 }

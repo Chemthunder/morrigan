@@ -9,7 +9,7 @@ import net.minecraft.text.TextCodecs;
  * @author Chemthunder
  */
 public record Oath(String id, int color, Text title, Text description) {
-    public static final Oath EMPTY = new Oath("", 0xFFfbe3d5, Text.empty(), Text.empty(), null);
+    public static final Oath EMPTY = new Oath("", 0xFFfbe3d5, Text.empty(), Text.empty());
 
     public static final Codec<Oath> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.optionalFieldOf("ID", "").forGetter(Oath::id),

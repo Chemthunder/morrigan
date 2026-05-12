@@ -36,7 +36,8 @@
 
   "custom": {
     "cardinal-components": [
-      "morrigan:cultist"
+      "morrigan:cultist",
+      "morrigan:enchancement_data"
     ]
   }
 }

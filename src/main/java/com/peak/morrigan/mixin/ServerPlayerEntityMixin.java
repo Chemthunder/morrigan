@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.authlib.GameProfile;
 import com.peak.morrigan.impl.index.data.MorriganDamageTypes;
-import com.peak.morrigan.impl.networking.LoadDeathScreenPayload;
+import com.peak.morrigan.impl.networking.s2c.LoadDeathScreenPayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,4 +1,4 @@
-package com.peak.morrigan.impl.networking;
+package com.peak.morrigan.impl.networking.s2c;
 
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.client.screen.SeverDeathScreen;

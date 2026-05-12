@@ -2,9 +2,10 @@ package com.peak.morrigan.impl.util;
 
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
-import com.peak.morrigan.impl.cca.entity.CultistComponent;
+import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.client.screen.CultDisplayScreen;
 import com.peak.morrigan.impl.index.MorriganOaths;
+import com.peak.morrigan.impl.networking.c2s.TriggerAbilityPayload;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
@@ -30,7 +31,7 @@ public class MorriganKeybindings {
                 category
         ));
 
-        openCultistScreen = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        triggerAbility = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.morrigan.trigger_ability",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_R,
@@ -48,7 +49,7 @@ public class MorriganKeybindings {
 
             if (client.player != null && triggerAbility.isPressed()) {
                 if (CultistComponent.KEY.get(client.player).isCultist()) {
-                    handleTriggerAbility(CultistComponent.KEY.get(client.player).getOath(), client);
+                    handleTriggerAbility(client);
                 }
             }
         });
@@ -64,9 +65,13 @@ public class MorriganKeybindings {
         }
     }
 
-    private static void handleTriggerAbility(Oath oath, MinecraftClient client) {
-        if (oath == MorriganOaths.RETURNING_ROOTS) {
-            // send packet
+    private static void handleTriggerAbility(MinecraftClient client) {
+        if (client.player != null) {
+            try {
+                TriggerAbilityPayload.send();
+            } catch (Exception e) {
+                Morrigan.LOGGER.error("Failed to send triggerAbilityPayload Payload");
+            }
         }
     }
 }

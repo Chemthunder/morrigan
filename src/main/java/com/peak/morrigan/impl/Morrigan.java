@@ -4,7 +4,8 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.mojang.brigadier.Command;
 import com.peak.morrigan.api.Oath;
-import com.peak.morrigan.impl.cca.entity.CultistComponent;
+import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
+import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.*;
 import com.peak.morrigan.impl.util.MorriganKeybindings;
 import net.fabricmc.api.ModInitializer;
@@ -30,6 +31,7 @@ public class Morrigan implements ModInitializer {
         MorriganItemGroups.init();
 
         MorriganNetworking.registerTypes();
+        MorriganNetworking.registerC2SPackets();
 
         MorriganKeybindings.register();
 
@@ -44,6 +46,15 @@ public class Morrigan implements ModInitializer {
                         cultistComponent.setLeader("");
                         cultistComponent.setCultist(false);
                         cultistComponent.swearOath(Oath.EMPTY);
+
+                        return Command.SINGLE_SUCCESS;
+                    }))
+
+                    .then(CommandManager.literal("enchancement").executes(context -> {
+                        PlayerEntity player = context.getSource().getPlayerOrThrow();
+                        EnchancementDataComponent data = EnchancementDataComponent.KEY.get(player);
+
+                        data.setMovementRemovedTicks(50);
 
                         return Command.SINGLE_SUCCESS;
                     }))

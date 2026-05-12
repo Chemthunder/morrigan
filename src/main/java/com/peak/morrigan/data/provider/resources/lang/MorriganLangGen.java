@@ -32,6 +32,9 @@ public class MorriganLangGen extends FabricLanguageProvider {
 
         translationBuilder.add("oath.morrigan.returning_roots.title", "Oath of Returning Roots");
         translationBuilder.add("oath.morrigan.returning_roots.description", "Take back from whence you came.");
+
+        translationBuilder.add("oath.morrigan.persevering_will.title", "Oath of Persevering Will");
+        translationBuilder.add("oath.morrigan.persevering_will.description", "Through suffering we are born stronger.");
     }
 }
 

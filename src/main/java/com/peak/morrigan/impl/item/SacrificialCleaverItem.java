@@ -5,7 +5,7 @@ import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManage
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
-import com.peak.morrigan.impl.cca.entity.CultistComponent;
+import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.component.StoredOathComponent;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
 import com.peak.morrigan.impl.util.ModUtils;
@@ -69,7 +69,7 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
 
         if (!oath.isEmpty()) {
             tooltip.add(oath.title());
-            tooltip.add(oath.description());
+            tooltip.add(oath.description().copy().formatted(Formatting.DARK_GRAY));
         }
         super.appendTooltip(stack, context, tooltip, type);
     }
