@@ -1,8 +1,10 @@
 package com.peak.morrigan.impl.util;
 
+import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.CultistComponent;
 import com.peak.morrigan.impl.client.screen.CultDisplayScreen;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
@@ -12,6 +14,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class MorriganKeybindings {
     public static KeyBinding openCultistScreen;
+    public static KeyBinding triggerAbility;
 
     public static void register() {
         registerKeyBindings();
@@ -26,6 +29,13 @@ public class MorriganKeybindings {
                 GLFW.GLFW_KEY_EQUAL,
                 category
         ));
+
+        openCultistScreen = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.morrigan.trigger_ability",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_R,
+                category
+        ));
     }
 
     private static void setupPressDetection() {
@@ -33,6 +43,12 @@ public class MorriganKeybindings {
             if (client.player != null && openCultistScreen.isPressed()) {
                 if (CultistComponent.KEY.get(client.player).isCultist()) {
                     handleOpenCultistScreen(client);
+                }
+            }
+
+            if (client.player != null && triggerAbility.isPressed()) {
+                if (CultistComponent.KEY.get(client.player).isCultist()) {
+                    handleTriggerAbility(CultistComponent.KEY.get(client.player).getOath(), client);
                 }
             }
         });
@@ -45,6 +61,12 @@ public class MorriganKeybindings {
             } catch (Exception e) {
                 Morrigan.LOGGER.error("Failed to send openCultistScreen Payload");
             }
+        }
+    }
+
+    private static void handleTriggerAbility(Oath oath, MinecraftClient client) {
+        if (oath == MorriganOaths.RETURNING_ROOTS) {
+            // send packet
         }
     }
 }
