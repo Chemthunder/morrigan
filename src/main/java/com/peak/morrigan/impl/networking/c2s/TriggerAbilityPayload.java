@@ -12,6 +12,9 @@ import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
 
+/**
+ * @author Chemthunder
+ */
 public record TriggerAbilityPayload() implements CustomPayload {
     public static final Id<TriggerAbilityPayload> ID = new Id<>(Morrigan.id("trigger_ability"));
     public static final PacketCodec<RegistryByteBuf, TriggerAbilityPayload> CODEC = PacketCodec.unit(new TriggerAbilityPayload());

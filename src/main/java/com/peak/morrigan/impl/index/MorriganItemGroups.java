@@ -13,6 +13,9 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 
+/**
+ * @author Chemthunder
+ */
 public interface MorriganItemGroups {
     ItemGroupRegistrant GROUPS = new ItemGroupRegistrant(Morrigan.MOD_ID);
 
