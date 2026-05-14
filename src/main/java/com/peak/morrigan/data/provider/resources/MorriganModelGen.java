@@ -21,5 +21,6 @@ public class MorriganModelGen extends FabricModelProvider {
         itemModelGenerator.register(MorriganItems.CELESTIAL_POCKETWATCH, Models.GENERATED);
         itemModelGenerator.register(MorriganItems.DREAMCATCHER, Models.GENERATED);
         itemModelGenerator.register(MorriganItems.ACHERON, Models.GENERATED);
+        itemModelGenerator.register(MorriganItems.CITADEL_ITEM, Models.GENERATED);
     }
 }

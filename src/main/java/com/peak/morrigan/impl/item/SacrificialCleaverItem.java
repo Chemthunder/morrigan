@@ -4,6 +4,7 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import com.peak.morrigan.api.Oath;
+import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.component.StoredOathComponent;
@@ -138,13 +139,17 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
     }
 
     public Text getName(ItemStack stack) {
-        return super.getName(stack).copy().setStyle(
-                TextEffectManager.withEffect(
-                        super.getName(stack).getStyle(),
-                        HibiscusPresetEffects.LERP_WAVE_EFFECT,
-                        TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)
-                ).withColor(stack.get(MorriganDataComponents.STORED_OATH).oath().color())
-        );
+        if (MorriganConfig.wavyText) {
+            return super.getName(stack).copy().setStyle(
+                    TextEffectManager.withEffect(
+                            super.getName(stack).getStyle(),
+                            HibiscusPresetEffects.LERP_WAVE_EFFECT,
+                            TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)
+                    ).withColor(stack.get(MorriganDataComponents.STORED_OATH).oath().color())
+            );
+        } else {
+            return super.getName(stack).copy().withColor(stack.get(MorriganDataComponents.STORED_OATH).oath().color());
+        }
     }
 
     public int startColor(ItemStack itemStack) {

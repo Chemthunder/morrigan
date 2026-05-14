@@ -1,5 +1,6 @@
 package com.peak.morrigan.impl.cca;
 
+import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
@@ -20,6 +21,12 @@ public class MorriganComponents implements EntityComponentInitializer {
         registry.registerForPlayers(
                 EnchancementDataComponent.KEY,
                 EnchancementDataComponent::new,
+                RespawnCopyStrategy.NEVER_COPY
+        );
+
+        registry.registerForPlayers(
+                AshProfileComponent.KEY,
+                AshProfileComponent::new,
                 RespawnCopyStrategy.NEVER_COPY
         );
     }

@@ -3,6 +3,7 @@ package com.peak.morrigan.impl.item;
 import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
+import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
 import com.peak.morrigan.impl.index.MorriganItems;
@@ -71,13 +72,17 @@ public class AcheronItem extends Item implements ColorableItem, ModelVaryingItem
     }
 
     public Text getName(ItemStack stack) {
-        return super.getName(stack).copy().setStyle(
-                TextEffectManager.withEffect(
-                        super.getName(stack).getStyle(),
-                        HibiscusPresetEffects.LERP_WAVE_EFFECT,
-                        TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)
-                ).withColor(endColor(stack))
-        );
+        if (MorriganConfig.wavyText) {
+            return super.getName(stack).copy().setStyle(
+                    TextEffectManager.withEffect(
+                            super.getName(stack).getStyle(),
+                            HibiscusPresetEffects.LERP_WAVE_EFFECT,
+                            TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)
+                    ).withColor(endColor(stack))
+            );
+        } else {
+            return super.getName(stack).copy().withColor(endColor(stack));
+        }
     }
 
     public int startColor(ItemStack itemStack) {

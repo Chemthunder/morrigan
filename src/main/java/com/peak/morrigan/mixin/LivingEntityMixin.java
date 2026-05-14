@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
-import com.peak.morrigan.impl.index.MorriganOaths;
+import com.peak.morrigan.impl.index.custom.MorriganOaths;
 import com.peak.morrigan.impl.item.SacrificialCleaverItem;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
@@ -24,8 +24,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 @Mixin(value = LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements Attackable {
-    @Shadow public float forwardSpeed;
-
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }

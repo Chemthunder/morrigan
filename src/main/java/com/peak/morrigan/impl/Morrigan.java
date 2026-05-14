@@ -4,10 +4,15 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.mojang.brigadier.Command;
 import com.peak.morrigan.api.Oath;
+import com.peak.morrigan.compat.MorriganConfig;
+import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.*;
+import com.peak.morrigan.impl.index.custom.MorriganAshProfiles;
+import com.peak.morrigan.impl.index.custom.MorriganOaths;
 import com.peak.morrigan.impl.util.MorriganKeybindings;
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -41,6 +46,9 @@ public class Morrigan implements ModInitializer {
         MorriganOaths.init();
         MorriganDataComponents.init();
         MorriganItemGroups.init();
+        MorriganAshProfiles.init();
+        MorriganBlocks.init();
+        MorriganBlockEntities.init();
 
         MorriganNetworking.registerTypes();
         MorriganNetworking.registerC2SPackets();
@@ -48,6 +56,8 @@ public class Morrigan implements ModInitializer {
         MorriganKeybindings.register();
 
 		LOGGER.info("Morrigan has initialized internally!");
+
+        MidnightConfig.init(MOD_ID, MorriganConfig.class);
 
         CommandRegistrationCallback.EVENT.register((commandDispatcher, commandRegistryAccess, registrationEnvironment) -> {
             commandDispatcher.register(CommandManager.literal("morrigan")
@@ -67,6 +77,15 @@ public class Morrigan implements ModInitializer {
                         EnchancementDataComponent data = EnchancementDataComponent.KEY.get(player);
 
                         data.setMovementRemovedTicks(50);
+
+                        return Command.SINGLE_SUCCESS;
+                    }))
+
+                    .then(CommandManager.literal("getProfile").executes(context -> {
+                        PlayerEntity player = context.getSource().getPlayerOrThrow();
+                        AshProfileComponent data = AshProfileComponent.KEY.get(player);
+
+                        context.getSource().sendFeedback(() -> Text.literal("current profile: " + data.getCurrentProfile().id()), false);
 
                         return Command.SINGLE_SUCCESS;
                     }))

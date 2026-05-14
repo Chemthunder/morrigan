@@ -1,8 +1,10 @@
 package com.peak.morrigan.data.provider.resources.lang;
 
+import com.peak.morrigan.api.AshProfile;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.index.MorriganItems;
-import com.peak.morrigan.impl.index.MorriganOaths;
+import com.peak.morrigan.impl.index.custom.MorriganAshProfiles;
+import com.peak.morrigan.impl.index.custom.MorriganOaths;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -27,6 +29,8 @@ public class MorriganLangGen extends FabricLanguageProvider {
         translationBuilder.add("key.morrigan.open_cultist_display_screen", "Open Cultist Screen");
 
         translationBuilder.add("morrigan.cult_screen.title", "Church of the Nevermore");
+        translationBuilder.add("morrigan.cult_screen.bound", "Bound under %s");
+        translationBuilder.add("morrigan.cult_screen.profile", "Current Profile: %s");
 
         // OATHS
         registerOath(translationBuilder, MorriganOaths.PRIESTESS_GAZE,
@@ -44,14 +48,39 @@ public class MorriganLangGen extends FabricLanguageProvider {
                 "Through suffering we are born stronger."
         );
 
-        registerOath(translationBuilder, MorriganOaths.BEATING_CYST,
-                "Oath of the Beating Cyst",
+        registerOath(translationBuilder, MorriganOaths.SYSTEMATIC_MARTYRDOM,
+                "Oath of Systematic Martyrdom",
                 "One among many; to live is to be more."
         );
+
+        // ASHPROFILE
+        registerAshProfile(translationBuilder, MorriganAshProfiles.CRYOCIDE,
+                "Cold Feet?"
+        );
+
+        registerAshProfile(translationBuilder, MorriganAshProfiles.FLORACIDE,
+                "You hear the grass whisper sweet nothings."
+        );
+
+        registerAshProfile(translationBuilder, MorriganAshProfiles.PYROCIDE,
+                "LET'S GET MOVING!"
+        );
+
+        registerAshProfile(translationBuilder, MorriganAshProfiles.AEROCIDE,
+                "Gotta go fast!"
+        );
+
+        // CONFIG
+        translationBuilder.add("morrigan.midnightconfig.title", "Morrigan");
+        translationBuilder.add("morrigan.midnightconfig.wavyText", "Wavy Text");
     }
 
     public static void registerOath(TranslationBuilder translationBuilder, Oath oath, String title, String description) {
         translationBuilder.add("oath.morrigan." + oath.id() + ".title", title);
         translationBuilder.add("oath.morrigan." + oath.id() + ".description", description);
+    }
+
+    public static void registerAshProfile(TranslationBuilder translationBuilder, AshProfile profile, String description) {
+        translationBuilder.add("ash_profile.morrigan." + profile.id(), description);
     }
 }

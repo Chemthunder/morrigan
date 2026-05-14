@@ -1,8 +1,11 @@
 package com.peak.morrigan.impl.client.screen;
 
 import com.peak.morrigan.api.Oath;
+import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
+import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
+import com.peak.morrigan.impl.index.custom.MorriganOaths;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,16 +39,27 @@ public class CultDisplayScreen extends Screen {
         if (player == null) return;
 
         CultistComponent cultistComponent = CultistComponent.KEY.get(player);
+        AshProfileComponent ashProfileComponent = AshProfileComponent.KEY.get(player);
         Oath oath = cultistComponent.getOath();
 
         if (cultistComponent.isCultist()) {
-            context.drawCenteredTextWithShadow(
-                    this.textRenderer,
-                    Text.translatable("morrigan.cult_screen.title").setStyle(Morrigan.applyFormatting(Text.translatable("morrigan.cult_screen.title"))),
-                    context.getScaledWindowWidth() / 2,
-                    30,
-                    0xb600ff
-            );
+            if (MorriganConfig.wavyText) {
+                context.drawCenteredTextWithShadow(
+                        this.textRenderer,
+                        Text.translatable("morrigan.cult_screen.title").setStyle(Morrigan.applyFormatting(Text.translatable("morrigan.cult_screen.title"))),
+                        context.getScaledWindowWidth() / 2,
+                        30,
+                        0xb600ff
+                );
+            } else {
+                context.drawCenteredTextWithShadow(
+                        this.textRenderer,
+                        Text.translatable("morrigan.cult_screen.title"),
+                        context.getScaledWindowWidth() / 2,
+                        30,
+                        0xb600ff
+                );
+            }
 
             context.drawCenteredTextWithShadow(
                     this.textRenderer,
@@ -57,7 +71,7 @@ public class CultDisplayScreen extends Screen {
 
             context.drawCenteredTextWithShadow(
                     this.textRenderer,
-                    Text.literal("Bound under " + cultistComponent.getLeader()),
+                    Text.translatable("morrigan.cult_screen.bound", cultistComponent.getLeader()),
                     context.getScaledWindowWidth() / 2,
                     80,
                     oath.color()
@@ -77,6 +91,24 @@ public class CultDisplayScreen extends Screen {
                     70,
                     oath.color()
             );
+
+            if (oath.equals(MorriganOaths.SYSTEMATIC_MARTYRDOM)) {
+                context.drawCenteredTextWithShadow(
+                        this.textRenderer,
+                        Text.translatable("morrigan.cult_screen.profile", ashProfileComponent.getCurrentProfile().id()),
+                        context.getScaledWindowWidth() / 2,
+                        context.getScaledWindowHeight() / 2,
+                        ashProfileComponent.getCurrentProfile().color()
+                );
+
+                context.drawCenteredTextWithShadow(
+                        this.textRenderer,
+                        ashProfileComponent.getCurrentProfile().description(),
+                        context.getScaledWindowWidth() / 2,
+                        context.getScaledWindowHeight() / 2 + 20,
+                        ashProfileComponent.getCurrentProfile().color()
+                );
+            }
 
             for (int i = 0; i < 2; i++) this.renderDarkening(context);
         }

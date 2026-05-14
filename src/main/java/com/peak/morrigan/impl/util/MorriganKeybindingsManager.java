@@ -1,7 +1,9 @@
 package com.peak.morrigan.impl.util;
 
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
+import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
+import com.peak.morrigan.impl.index.custom.MorriganAshProfiles;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -14,8 +16,6 @@ import net.minecraft.world.World;
  */
 public class MorriganKeybindingsManager {
     public static void morrigan$returningroots(PlayerEntity player, World world) {
-        player.sendMessage(Text.of("aaa"));
-
         world.getEntitiesByClass(
                 PlayerEntity.class,
                 new Box(
@@ -47,6 +47,20 @@ public class MorriganKeybindingsManager {
                     1,
                     0,
                     0.2f
+            );
+        }
+    }
+
+    public static void morrigan$sysMartyr(PlayerEntity player, World world) {
+        AshProfileComponent profile = AshProfileComponent.KEY.get(player);
+
+        if (player.isSneaking()) {
+            profile.setCurrentProfile(
+                    profile.getCurrentProfile() != MorriganAshProfiles.PROFILES.getLast()
+                            ?
+                            MorriganAshProfiles.PROFILES.get(MorriganAshProfiles.PROFILES.indexOf(profile.getCurrentProfile()) + 1)
+                            :
+                            MorriganAshProfiles.PROFILES.getFirst()
             );
         }
     }

@@ -1,4 +1,9 @@
 {
+  "ash_profile.morrigan.aerocide": "Gotta go fast!",
+  "ash_profile.morrigan.cryocide": "Cold Feet?",
+  "ash_profile.morrigan.floracide": "You hear the grass whisper sweet nothings.",
+  "ash_profile.morrigan.pyrocide": "LET'S GET MOVING!",
+  "block.morrigan.nevermorian_citadel": "Nevermorian Citadel",
   "category.morrigan": "Morrigan",
   "item.morrigan.acheron": "Acheron",
   "item.morrigan.celestial_pocketwatch": "Celestial Pocketwatch",
@@ -6,13 +11,17 @@
   "item.morrigan.sacrificial_cleaver": "Sacrificial Cleaver",
   "itemGroup.morrigan": "Morrigan",
   "key.morrigan.open_cultist_display_screen": "Open Cultist Screen",
+  "morrigan.cult_screen.bound": "Bound under %s",
+  "morrigan.cult_screen.profile": "Current Profile: %s",
   "morrigan.cult_screen.title": "Church of the Nevermore",
-  "oath.morrigan.beating_cyst.description": "One among many; to live is to be more.",
-  "oath.morrigan.beating_cyst.title": "Oath of the Beating Cyst",
+  "morrigan.midnightconfig.title": "Morrigan",
+  "morrigan.midnightconfig.wavyText": "Wavy Text",
   "oath.morrigan.persevering_will.description": "Through suffering we are born stronger.",
   "oath.morrigan.persevering_will.title": "Oath of Persevering Will",
   "oath.morrigan.priestess_gaze.description": "Lay down one's soul to Fesscinenne's will.",
   "oath.morrigan.priestess_gaze.title": "Bind of the Priesstess's Gaze",
   "oath.morrigan.returning_roots.description": "Take back from whence you came.",
-  "oath.morrigan.returning_roots.title": "Oath of Returning Roots"
+  "oath.morrigan.returning_roots.title": "Oath of Returning Roots",
+  "oath.morrigan.systematic_martyrdom.description": "One among many; to live is to be more.",
+  "oath.morrigan.systematic_martyrdom.title": "Oath of Systematic Martyrdom"
 }

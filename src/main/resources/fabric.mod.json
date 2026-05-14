@@ -30,6 +30,9 @@
     ],
     "cardinal-components": [
       "com.peak.morrigan.impl.cca.MorriganComponents"
+    ],
+    "modmenu": [
+      "com.peak.morrigan.compat.MorriganModMenuCompat"
     ]
   },
   
@@ -50,7 +53,8 @@
   "custom": {
     "cardinal-components": [
       "morrigan:cultist",
-      "morrigan:enchancement_data"
+      "morrigan:enchancement_data",
+      "morrigan:ash_profile"
     ]
   }
 }
