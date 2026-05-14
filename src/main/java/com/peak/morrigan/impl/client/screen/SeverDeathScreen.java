@@ -15,7 +15,6 @@ import java.util.Random;
  * @author Chemthunder
  */
 public class SeverDeathScreen extends Screen {
-
     private int age = 0;
 
     public SeverDeathScreen() {

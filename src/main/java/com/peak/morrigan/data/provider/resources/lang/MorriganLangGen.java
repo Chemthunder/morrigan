@@ -55,5 +55,3 @@ public class MorriganLangGen extends FabricLanguageProvider {
         translationBuilder.add("oath.morrigan." + oath.id() + ".description", description);
     }
 }
-
-

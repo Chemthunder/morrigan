@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 /**
  * @author Chemthunder
+ * @author AcoYT
  */
 @Mixin(value = ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity {

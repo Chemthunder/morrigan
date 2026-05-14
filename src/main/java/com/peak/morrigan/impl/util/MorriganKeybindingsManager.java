@@ -13,7 +13,6 @@ import net.minecraft.world.World;
  * @author Chemthunder
  */
 public class MorriganKeybindingsManager {
-
     public static void morrigan$returningroots(PlayerEntity player, World world) {
         player.sendMessage(Text.of("aaa"));
 

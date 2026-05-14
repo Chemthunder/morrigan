@@ -11,6 +11,7 @@ import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 /**
  * @author Chemthunder
+ * Allows controlling of Enchancement enchantments.
  */
 public class EnchancementDataComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<EnchancementDataComponent> KEY = MiscUtils.getOrCreateKey(Morrigan.id("enchancement_data"), EnchancementDataComponent.class);

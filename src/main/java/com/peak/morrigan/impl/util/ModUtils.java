@@ -7,7 +7,10 @@ import net.minecraft.entity.LivingEntity;
  * @author Chemthunder
  */
 public class ModUtils {
-
+    /**
+     * Checks if an entity is naked.
+     * @param living The entity to check.
+     */
     public static boolean isNaked(LivingEntity living) {
         if (
                 living.getEquippedStack(EquipmentSlot.HEAD).isEmpty() &&
@@ -17,7 +20,6 @@ public class ModUtils {
         ) {
             return true;
         }
-
         return false;
     }
 }

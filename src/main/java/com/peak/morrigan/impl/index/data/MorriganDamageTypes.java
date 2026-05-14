@@ -2,7 +2,6 @@ package com.peak.morrigan.impl.index.data;
 
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.omnia.api.registration.core.DamageTypeRegistry;
-import com.peak.omnia.impl.Omnia;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;

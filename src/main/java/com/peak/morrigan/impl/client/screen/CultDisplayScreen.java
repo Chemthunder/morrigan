@@ -82,3 +82,8 @@ public class CultDisplayScreen extends Screen {
         }
     }
 }
+
+/**
+ * NOTE!
+ * Have the description change for Systematic Martyr depending on which profile it's in.
+ */

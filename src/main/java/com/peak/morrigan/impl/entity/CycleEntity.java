@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 /**
  * @author Chemthunder
  */
+// might delete since this is a primarily scrapped feature
 public class CycleEntity extends ThrownEntity {
     private float boxSize = 0;
 

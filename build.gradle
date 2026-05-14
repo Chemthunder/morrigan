@@ -52,25 +52,28 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    // primary libs
-    include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${project.mixinsquared_version}")))
-
+    // Libraries
     modImplementation "maven.modrinth:acornlib:${project.acornlib_version}"
+    
     modImplementation include("maven.modrinth:nitrogen_rbn:${project.nitrogen_version}")
-    modApi ("com.terraformersmc:modmenu:${project.modmenu_version}")
-    modImplementation ("maven.modrinth:midnightlib:${project.midnightlib_version}")
+    
     modImplementation "maven.modrinth:hibiscus:${project.hibiscus_version}"
+
     modImplementation ("maven.modrinth:lux_chemthunder:${project.lux_version}")
     modImplementation ("maven.modrinth:omnia_chemthunder:${project.omnia_version}")
-    modImplementation "moriyashiine:enchancement:${project.enchancement_version}"
 
-    // cca
     modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
     modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
     modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-world:${project.cca_version}")
 
-    // trinkets
+    // Compat
+    modImplementation "moriyashiine:enchancement:${project.enchancement_version}"
+
+    // Requirements
     modImplementation include("dev.emi:trinkets:${project.trinkets_version}")
+    modApi ("com.terraformersmc:modmenu:${project.modmenu_version}")
+    modImplementation ("maven.modrinth:midnightlib:${project.midnightlib_version}")
+    include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:${project.mixinsquared_version}")))
 }
 
 processResources {

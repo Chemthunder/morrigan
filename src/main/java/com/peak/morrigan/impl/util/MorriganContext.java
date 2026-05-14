@@ -7,7 +7,9 @@ import net.minecraft.util.math.Vec2f;
 
 /**
  * @author Chemthunder
+ * @author n1tr0nr
  */
+// Tweaks to existing Nitrogen methods to allow for more specific placement.
 public class MorriganContext {
     public static void renderTexturedCube(MatrixStack matrices, VertexConsumer vertices, double x, double y, double z, float inflation, Vec2f timeOffset, float tileSize) {
         MatrixStack.Entry entry = matrices.peek();

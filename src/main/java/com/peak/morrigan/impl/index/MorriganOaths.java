@@ -26,5 +26,6 @@ public interface MorriganOaths {
 
     static void init() {
         HAS_ABILITY.add(RETURNING_ROOTS);
+        HAS_ABILITY.add(BEATING_CYST);
     }
 }

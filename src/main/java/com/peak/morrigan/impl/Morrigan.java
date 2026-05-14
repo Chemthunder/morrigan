@@ -29,7 +29,7 @@ public class Morrigan implements ModInitializer {
     public static final ALib.ModMenuData MENUDATA = new ALib.ModMenuData(
             Text.literal("Morrigan").withColor(0xFFac42ff),
             Text.literal("Nevermorian Decadence."),
-            Text.literal("\"Man has no need to fear that which lays in the dark-that which should never be awakened.\"")
+            Text.literal("\"Man has no need to fear that which lays in the dark--that which should never be awakened.\"")
     );
 
 	public void onInitialize() {
@@ -71,7 +71,7 @@ public class Morrigan implements ModInitializer {
                         return Command.SINGLE_SUCCESS;
                     }))
             );
-        });
+        }); // TODO: move morrigan debug to its own class
 	}
 
     public static Identifier id(String path) {
@@ -82,10 +82,3 @@ public class Morrigan implements ModInitializer {
         return TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT));
     }
 }
-
-/*
- * NOTES
- *
- * A giant screen (accessed with =) that shows you your current Oath, who inflicted it on you (your owner), and the effects.
- * Add sacrificng, killing a player with the Sacrifices Effigy to sign them through.
- */
