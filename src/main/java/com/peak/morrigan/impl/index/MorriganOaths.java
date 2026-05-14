@@ -13,23 +13,13 @@ public interface MorriganOaths {
     List<Oath> OATHS = new ArrayList<>();
     List<Oath> HAS_ABILITY = new ArrayList<>();
 
-    Oath PRIESTESS_GAZE = create("priestess_gaze", 0xFFac42ff,
-            Text.translatable("oath.morrigan.priestess_gaze.title").withColor(0xFFac42ff),
-            Text.translatable("oath.morrigan.priestess_gaze.description")
-    );
+    Oath PRIESTESS_GAZE = create("priestess_gaze", 0xFFac42ff);
+    Oath RETURNING_ROOTS = create("returning_roots", 0xFF67edcd);
+    Oath PERSEVERING_WILL = create("persevering_will", 0xFFfdf698);
+    Oath BEATING_CYST = create("beating_cyst", 0xFFc95858);
 
-    Oath RETURNING_ROOTS = create("returning_roots", 0xFF67edcd,
-            Text.translatable("oath.morrigan.returning_roots.title").withColor(0xFF67edcd),
-            Text.translatable("oath.morrigan.returning_roots.description")
-    );
-
-    Oath PERSEVERING_WILL = create("persevering_will", 0xFFfdf698,
-            Text.translatable("oath.morrigan.persevering_will.title").withColor(0xFFfdf698),
-            Text.translatable("oath.morrigan.persevering_will.description")
-    );
-
-    static Oath create(String id, int color, Text title, Text desc) {
-        Oath gen = new Oath(id, color, title, desc);
+    static Oath create(String id, int color) {
+        Oath gen = new Oath(id, color, Text.translatable("oath.morrigan." + id + ".title").withColor(color), Text.translatable("oath.morrigan." + id + ".description"));
         OATHS.add(gen);
         return gen;
     }

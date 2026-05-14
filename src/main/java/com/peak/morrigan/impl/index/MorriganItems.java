@@ -1,6 +1,7 @@
 package com.peak.morrigan.impl.index;
 
 import com.peak.morrigan.impl.Morrigan;
+import com.peak.morrigan.impl.item.AcheronItem;
 import com.peak.morrigan.impl.item.CelestialPocketwatchItem;
 import com.peak.morrigan.impl.item.DreamcatcherItem;
 import com.peak.morrigan.impl.item.SacrificialCleaverItem;
@@ -24,6 +25,11 @@ public interface MorriganItems {
 
     Item CELESTIAL_POCKETWATCH = ITEMS.register("celestial_pocketwatch", CelestialPocketwatchItem::new, new Item.Settings()
             .maxCount(1)
+    );
+
+    Item ACHERON = ITEMS.register("acheron", AcheronItem::new, new Item.Settings()
+            .maxCount(1)
+            .attributeModifiers(AcheronItem.createAttributeModifiers())
     );
 
     static void init() {}

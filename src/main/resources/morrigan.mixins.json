@@ -8,7 +8,6 @@
     "ServerPlayerEntityMixin",
     "compat.enchancement.AirJumpComponentMixin",
     "compat.enchancement.DirectionBurstComponentMixin",
-    "compat.enchancement.ItemMixinSquared",
     "compat.enchancement.RotationBurstComponentMixin"
   ],
   "injectors": {

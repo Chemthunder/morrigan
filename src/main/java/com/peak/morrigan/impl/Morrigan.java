@@ -8,6 +8,7 @@ import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.*;
 import com.peak.morrigan.impl.util.MorriganKeybindings;
+import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +23,15 @@ public class Morrigan implements ModInitializer {
 	public static final String MOD_ID = "morrigan";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+    public static final ALib.ModMenuData MENUDATA = new ALib.ModMenuData(
+            Text.literal("Morrigan").withColor(0xFFac42ff),
+            Text.literal("Nevermorian Decadence."),
+            Text.literal("\"Man has no need to fear that which lays in the dark-that which should never be awakened.\"")
+    );
+
 	public void onInitialize() {
+        ALib.registerModData(MOD_ID, MENUDATA);
+
         MorriganItems.init();
         MorriganSounds.init();
         MorriganEntities.init();
@@ -35,7 +44,7 @@ public class Morrigan implements ModInitializer {
 
         MorriganKeybindings.register();
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Morrigan has initialized internally!");
 
         CommandRegistrationCallback.EVENT.register((commandDispatcher, commandRegistryAccess, registrationEnvironment) -> {
             commandDispatcher.register(CommandManager.literal("morrigan")

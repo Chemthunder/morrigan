@@ -1,15 +1,18 @@
 {
   "category.morrigan": "Morrigan",
+  "item.morrigan.acheron": "Acheron",
   "item.morrigan.celestial_pocketwatch": "Celestial Pocketwatch",
   "item.morrigan.dreamcatcher": "Dreamcatcher",
   "item.morrigan.sacrificial_cleaver": "Sacrificial Cleaver",
   "itemGroup.morrigan": "Morrigan",
   "key.morrigan.open_cultist_display_screen": "Open Cultist Screen",
   "morrigan.cult_screen.title": "Church of the Nevermore",
+  "oath.morrigan.beating_cyst.description": "One among many; to live is to be more.",
+  "oath.morrigan.beating_cyst.title": "Oath of the Beating Cyst",
   "oath.morrigan.persevering_will.description": "Through suffering we are born stronger.",
   "oath.morrigan.persevering_will.title": "Oath of Persevering Will",
   "oath.morrigan.priestess_gaze.description": "Lay down one's soul to Fesscinenne's will.",
-  "oath.morrigan.priestess_gaze.title": "Bind of the Priestess' Gaze",
+  "oath.morrigan.priestess_gaze.title": "Bind of the Priesstess's Gaze",
   "oath.morrigan.returning_roots.description": "Take back from whence you came.",
   "oath.morrigan.returning_roots.title": "Oath of Returning Roots"
 }

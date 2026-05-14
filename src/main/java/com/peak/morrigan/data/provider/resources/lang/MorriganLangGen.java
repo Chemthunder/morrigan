@@ -1,6 +1,8 @@
 package com.peak.morrigan.data.provider.resources.lang;
 
+import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.index.MorriganItems;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -27,14 +29,30 @@ public class MorriganLangGen extends FabricLanguageProvider {
         translationBuilder.add("morrigan.cult_screen.title", "Church of the Nevermore");
 
         // OATHS
-        translationBuilder.add("oath.morrigan.priestess_gaze.title", "Bind of the Priestess' Gaze");
-        translationBuilder.add("oath.morrigan.priestess_gaze.description", "Lay down one's soul to Fesscinenne's will.");
+        registerOath(translationBuilder, MorriganOaths.PRIESTESS_GAZE,
+                "Bind of the Priesstess's Gaze",
+                "Lay down one's soul to Fesscinenne's will."
+        );
 
-        translationBuilder.add("oath.morrigan.returning_roots.title", "Oath of Returning Roots");
-        translationBuilder.add("oath.morrigan.returning_roots.description", "Take back from whence you came.");
+        registerOath(translationBuilder, MorriganOaths.RETURNING_ROOTS,
+                "Oath of Returning Roots",
+                "Take back from whence you came."
+        );
 
-        translationBuilder.add("oath.morrigan.persevering_will.title", "Oath of Persevering Will");
-        translationBuilder.add("oath.morrigan.persevering_will.description", "Through suffering we are born stronger.");
+        registerOath(translationBuilder, MorriganOaths.PERSEVERING_WILL,
+                "Oath of Persevering Will",
+                "Through suffering we are born stronger."
+        );
+
+        registerOath(translationBuilder, MorriganOaths.BEATING_CYST,
+                "Oath of the Beating Cyst",
+                "One among many; to live is to be more."
+        );
+    }
+
+    public static void registerOath(TranslationBuilder translationBuilder, Oath oath, String title, String description) {
+        translationBuilder.add("oath.morrigan." + oath.id() + ".title", title);
+        translationBuilder.add("oath.morrigan." + oath.id() + ".description", description);
     }
 }
 

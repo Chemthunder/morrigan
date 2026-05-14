@@ -61,6 +61,7 @@ dependencies {
     modImplementation ("maven.modrinth:midnightlib:${project.midnightlib_version}")
     modImplementation "maven.modrinth:hibiscus:${project.hibiscus_version}"
     modImplementation ("maven.modrinth:lux_chemthunder:${project.lux_version}")
+    modImplementation ("maven.modrinth:omnia_chemthunder:${project.omnia_version}")
     modImplementation "moriyashiine:enchancement:${project.enchancement_version}"
 
     // cca

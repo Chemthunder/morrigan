@@ -9,11 +9,15 @@ import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.component.StoredOathComponent;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
 import com.peak.morrigan.impl.util.ModUtils;
+import net.acoyt.acornlib.api.item.CustomHitParticleItem;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;
+import net.acoyt.acornlib.api.util.ParticleUtils;
+import net.acoyt.acornlib.impl.client.particle.SweepParticleEffect;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -21,6 +25,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -35,7 +40,7 @@ import java.util.List;
 /**
  * @author Chemthunder
  */
-public class SacrificialCleaverItem extends Item implements ModelVaryingItem, ColorableItem {
+public class SacrificialCleaverItem extends Item implements ModelVaryingItem, ColorableItem, CustomHitParticleItem {
     public SacrificialCleaverItem(Settings settings) {
         super(settings
                 .component(
@@ -94,13 +99,20 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
         CultistComponent cultistComponent = CultistComponent.KEY.get(user);
+        Oath oath = stack.get(MorriganDataComponents.STORED_OATH).oath();
 
         if (user.isSneaking()) {
-            if (!stack.get(MorriganDataComponents.STORED_OATH).oath().isEmpty()) {
+            if (!oath.isEmpty()) {
                 if (!cultistComponent.isCultist()) {
                     cultistComponent.setCultist(true);
                     cultistComponent.setLeader(user.getNameForScoreboard());
-                    cultistComponent.swearOath(stack.get(MorriganDataComponents.STORED_OATH).oath());
+                    cultistComponent.swearOath(oath);
+                    
+                    ParticleUtils.spawnSweepParticles(new SweepParticleEffect(0xFF1c1c2a, oath.color()), user);
+
+                    if (world.isClient()) {
+                        user.swingHand(hand);
+                    }
                 }
             }
         }
@@ -119,6 +131,12 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
         );
     }
 
+    public void spawnHitParticles(PlayerEntity player, Entity target) {
+        ItemStack stack = player.getMainHandStack();
+        Oath oath = stack.get(MorriganDataComponents.STORED_OATH).oath();
+        ParticleUtils.spawnSweepParticles(new SweepParticleEffect(0xFF1c1c2a, oath.color()), player);
+    }
+
     public Text getName(ItemStack stack) {
         return super.getName(stack).copy().setStyle(
                 TextEffectManager.withEffect(
@@ -130,7 +148,7 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
     }
 
     public int startColor(ItemStack itemStack) {
-        return 0xFF23232a;
+        return itemStack.get(MorriganDataComponents.STORED_OATH).oath().isEmpty() ? 0xFF23232a : itemStack.get(MorriganDataComponents.STORED_OATH).oath().color();
     }
 
     public int endColor(ItemStack itemStack) {

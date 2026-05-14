@@ -3,9 +3,13 @@
   "id": "morrigan",
   "version": "${version}",
   "name": "Morrigan",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "gay",
   "authors": [
-    "Me!"
+    "Chemthunder"
+  ],
+  "contributors": [
+    "KindlingCinder - Assets",
+    "AcoYT - Assets"
   ],
   "license": "CC0-1.0",
   "icon": "assets/morrigan/icon.png",
