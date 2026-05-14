@@ -3,6 +3,9 @@ package com.peak.morrigan.impl.util;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 
+/**
+ * @author Chemthunder
+ */
 public class ModUtils {
 
     public static boolean isNaked(LivingEntity living) {

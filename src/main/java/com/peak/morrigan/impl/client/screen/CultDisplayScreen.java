@@ -8,6 +8,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 
+/**
+ * @author Chemthunder
+ */
 public class CultDisplayScreen extends Screen {
     private int ticks = 0;
     private int lineWidth = 0;

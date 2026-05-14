@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Chemthunder
+ */
 public class MorriganDataGen implements DataGeneratorEntrypoint {
     public static final DataInitializer PRIMARY = new DataInitializer(Morrigan.MOD_ID, List.of(
             MorriganDamageTypes.DATA
