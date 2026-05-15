@@ -5,8 +5,6 @@ import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManage
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
-import com.peak.morrigan.impl.index.MorriganDataComponents;
-import com.peak.morrigan.impl.index.MorriganItems;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.block.BlockState;

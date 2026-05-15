@@ -3,7 +3,6 @@ package com.peak.morrigan.impl.index;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.block.item.NevermorianCitadelBlockItem;
 import com.peak.morrigan.impl.item.AcheronItem;
-import com.peak.morrigan.impl.item.CelestialPocketwatchItem;
 import com.peak.morrigan.impl.item.DreamcatcherItem;
 import com.peak.morrigan.impl.item.SacrificialCleaverItem;
 import net.acoyt.acornlib.api.registrants.ItemRegistrant;
@@ -21,10 +20,6 @@ public interface MorriganItems {
     );
 
     Item DREAMCATCHER = ITEMS.register("dreamcatcher", DreamcatcherItem::new, new Item.Settings()
-            .maxCount(1)
-    );
-
-    Item CELESTIAL_POCKETWATCH = ITEMS.register("celestial_pocketwatch", CelestialPocketwatchItem::new, new Item.Settings()
             .maxCount(1)
     );
 
