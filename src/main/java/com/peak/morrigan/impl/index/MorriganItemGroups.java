@@ -39,7 +39,6 @@ public interface MorriganItemGroups {
             itemGroup.add(cleaverVariant);
         }
 
-        itemGroup.add(MorriganItems.CELESTIAL_POCKETWATCH);
         itemGroup.add(MorriganItems.DREAMCATCHER);
         itemGroup.add(MorriganItems.ACHERON);
     }
