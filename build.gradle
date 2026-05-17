@@ -34,6 +34,13 @@ repositories {
 
     // MixinSquared
     maven { url "https://maven.bawnorton.com/releases" }
+
+    // SVC
+    maven {
+        name "henkelmax.public"
+        url 'https://maven.maxhenkel.de/repository/public'
+    }
+    mavenCentral()
 }
 
 fabricApi {
@@ -68,6 +75,7 @@ dependencies {
 
     // Compat
     modImplementation "moriyashiine:enchancement:${project.enchancement_version}"
+    modCompileOnly "maven.modrinth:simple-voice-chat:fabric-${project.voicechat_version}"
 
     // Requirements
     modImplementation include("dev.emi:trinkets:${project.trinkets_version}")

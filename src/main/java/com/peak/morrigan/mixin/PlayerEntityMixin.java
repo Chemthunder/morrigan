@@ -2,8 +2,8 @@ package com.peak.morrigan.mixin;
 
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
-import com.peak.morrigan.impl.index.custom.MorriganAshProfiles;
-import com.peak.morrigan.impl.index.custom.MorriganOaths;
+import com.peak.morrigan.impl.index.MorriganAshProfiles;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,6 +1,7 @@
 package com.peak.morrigan.data;
 
 import com.peak.morrigan.data.provider.resources.MorriganModelGen;
+import com.peak.morrigan.data.provider.resources.MorriganParticleGen;
 import com.peak.morrigan.data.provider.resources.lang.MorriganLangGen;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.index.data.MorriganDamageTypes;
@@ -32,6 +33,7 @@ public class MorriganDataGen implements DataGeneratorEntrypoint {
 
         pack.addProvider(MorriganModelGen::new);
         pack.addProvider(MorriganLangGen::new);
+        pack.addProvider(MorriganParticleGen::new);
 	}
 
     public void buildRegistry(RegistryBuilder registryBuilder) {

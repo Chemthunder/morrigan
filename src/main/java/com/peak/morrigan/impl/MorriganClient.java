@@ -3,10 +3,7 @@ package com.peak.morrigan.impl;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.component.StoredOathComponent;
 import com.peak.morrigan.impl.event.client.CultistKeybindIndicatorEvent;
-import com.peak.morrigan.impl.index.MorriganDataComponents;
-import com.peak.morrigan.impl.index.MorriganEntities;
-import com.peak.morrigan.impl.index.MorriganItems;
-import com.peak.morrigan.impl.index.MorriganNetworking;
+import com.peak.morrigan.impl.index.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -19,6 +16,7 @@ public class MorriganClient implements ClientModInitializer {
         MorriganNetworking.registerS2CPackets();
 
         MorriganEntities.clientInit();
+        MorriganParticles.clientInit();
 
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
             StoredOathComponent oathComponent = stack.get(MorriganDataComponents.STORED_OATH);

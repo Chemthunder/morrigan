@@ -3,7 +3,7 @@ package com.peak.morrigan.impl.networking.c2s;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
-import com.peak.morrigan.impl.index.custom.MorriganOaths;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import com.peak.morrigan.impl.util.MorriganKeybindingsManager;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -50,16 +50,6 @@ public record TriggerAbilityPayload() implements CustomPayload {
                                         player,
                                         player.getWorld()
                                 );
-                            }
-
-                            if (oath.equals(MorriganOaths.SYSTEMATIC_MARTYRDOM)) {
-                                if (player.isSneaking()) {
-                                    cultistComponent.setKeybindCooldownTicks(50);
-                                } else {
-                                    cultistComponent.setKeybindCooldownTicks(500);
-                                }
-                            } else {
-                                cultistComponent.setKeybindCooldownTicks(500);
                             }
                         }
                     }

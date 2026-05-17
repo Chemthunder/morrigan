@@ -22,6 +22,8 @@ public class CycleEntity extends ThrownEntity {
         super(MorriganEntities.CYCLE, world);
     }
 
+    protected void initDataTracker(DataTracker.Builder builder) {}
+
     public void tick() {
         if (this.boxSize < 40) {
             this.boxSize = this.boxSize + (0.1f + this.boxSize / 50);
@@ -35,8 +37,6 @@ public class CycleEntity extends ThrownEntity {
     public void setBoxSize(float i) {
         this.boxSize = i;
     }
-
-    protected void initDataTracker(DataTracker.Builder builder) {}
 
     protected void readCustomDataFromNbt(NbtCompound nbt) {
         this.boxSize = nbt.getFloat("BoxSize");

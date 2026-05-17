@@ -3,7 +3,6 @@ package com.peak.morrigan.impl.index;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.component.StoredOathComponent;
-import com.peak.morrigan.impl.index.custom.MorriganOaths;
 import net.acoyt.acornlib.api.registrants.ItemGroupRegistrant;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;

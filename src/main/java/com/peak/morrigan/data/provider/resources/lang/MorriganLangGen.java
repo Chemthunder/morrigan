@@ -3,8 +3,9 @@ package com.peak.morrigan.data.provider.resources.lang;
 import com.peak.morrigan.api.AshProfile;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.index.MorriganItems;
-import com.peak.morrigan.impl.index.custom.MorriganAshProfiles;
-import com.peak.morrigan.impl.index.custom.MorriganOaths;
+import com.peak.morrigan.impl.index.MorriganAshProfiles;
+import com.peak.morrigan.impl.index.MorriganOaths;
+import com.peak.morrigan.impl.index.MorriganStatusEffects;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -21,6 +22,7 @@ public class MorriganLangGen extends FabricLanguageProvider {
 
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
         MorriganItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
+        MorriganStatusEffects.STATUS_EFFECTS.registerLang(wrapperLookup, translationBuilder);
 
         translationBuilder.add("itemGroup.morrigan", "Morrigan");
 

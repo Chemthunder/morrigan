@@ -1,4 +1,4 @@
-package com.peak.morrigan.impl.index.custom;
+package com.peak.morrigan.impl.index;
 
 import com.peak.morrigan.api.AshProfile;
 import net.minecraft.text.Text;

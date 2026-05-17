@@ -9,8 +9,8 @@ import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.*;
-import com.peak.morrigan.impl.index.custom.MorriganAshProfiles;
-import com.peak.morrigan.impl.index.custom.MorriganOaths;
+import com.peak.morrigan.impl.index.MorriganAshProfiles;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import com.peak.morrigan.impl.util.MorriganKeybindings;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
@@ -49,6 +49,8 @@ public class Morrigan implements ModInitializer {
         MorriganAshProfiles.init();
         MorriganBlocks.init();
         MorriganBlockEntities.init();
+        MorriganStatusEffects.init();
+        MorriganParticles.init();
 
         MorriganNetworking.registerTypes();
         MorriganNetworking.registerC2SPackets();
@@ -101,3 +103,8 @@ public class Morrigan implements ModInitializer {
         return TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT));
     }
 }
+
+/**
+ * DREAMCATCHER
+ * Gives an effect that forcefully deafens people and removes their ability to see others.
+ */

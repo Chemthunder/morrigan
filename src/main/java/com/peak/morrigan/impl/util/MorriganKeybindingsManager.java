@@ -3,11 +3,14 @@ package com.peak.morrigan.impl.util;
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
-import com.peak.morrigan.impl.index.custom.MorriganAshProfiles;
+import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
+import com.peak.morrigan.impl.index.MorriganAshProfiles;
+import com.peak.morrigan.impl.index.MorriganParticles;
+import com.peak.morrigan.impl.index.MorriganStatusEffects;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
@@ -49,6 +52,8 @@ public class MorriganKeybindingsManager {
                     0.2f
             );
         }
+
+        ModUtils.getCultistInstance(player).setKeybindCooldownTicks(500);
     }
 
     public static void morrigan$sysMartyr(PlayerEntity player, World world) {
@@ -62,6 +67,43 @@ public class MorriganKeybindingsManager {
                             :
                             MorriganAshProfiles.PROFILES.getFirst()
             );
+
+            ModUtils.getCultistInstance(player).setKeybindCooldownTicks(50);
+        } else {
+            if (profile.getCurrentProfile().hasAbility()) {
+                if (profile.getCurrentProfile() == MorriganAshProfiles.FLORACIDE) {
+                    // ensnare
+                }
+
+                if (profile.getCurrentProfile() == MorriganAshProfiles.PYROCIDE) {
+                    if (world instanceof ServerWorld serverWorld) {
+                        player.addStatusEffect(
+                                new StatusEffectInstance(
+                                        MorriganStatusEffects.RAMPAGE,
+                                        1200
+                                )
+                        );
+
+                        serverWorld.spawnParticles(
+                                MorriganParticles.RAGING,
+                                player.getX(),
+                                player.getY(),
+                                player.getZ(),
+                                15,
+                                0,
+                                0.9f,
+                                0,
+                                0.2f
+                        );
+                    }
+
+                    //ModUtils.getCultistInstance(player).setKeybindCooldownTicks(9600);
+                }
+
+                if (profile.getCurrentProfile() == MorriganAshProfiles.AEROCIDE) {
+                    // fearful child
+                }
+            }
         }
     }
 }

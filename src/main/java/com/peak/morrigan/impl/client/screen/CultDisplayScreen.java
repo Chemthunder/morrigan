@@ -5,7 +5,7 @@ import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
-import com.peak.morrigan.impl.index.custom.MorriganOaths;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
