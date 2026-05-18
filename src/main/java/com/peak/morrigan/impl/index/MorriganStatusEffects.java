@@ -7,7 +7,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
@@ -36,5 +35,6 @@ public interface MorriganStatusEffects {
                             EntityAttributes.GENERIC_ATTACK_SPEED, Identifier.ofVanilla("rampage.effect.block_break_speed"), 0.3f, EntityAttributeModifier.Operation.ADD_VALUE
                     )
     );
+
     static void init() {}
 }

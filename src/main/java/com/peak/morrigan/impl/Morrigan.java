@@ -9,8 +9,6 @@ import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.*;
-import com.peak.morrigan.impl.index.MorriganAshProfiles;
-import com.peak.morrigan.impl.index.MorriganOaths;
 import com.peak.morrigan.impl.util.MorriganKeybindings;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
@@ -100,7 +98,7 @@ public class Morrigan implements ModInitializer {
     }
 
     public static Style applyFormatting(Text text) {
-        return TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT));
+        return MorriganConfig.wavyText ? TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)) : text.getStyle();
     }
 }
 

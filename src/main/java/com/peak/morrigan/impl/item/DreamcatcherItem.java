@@ -37,13 +37,7 @@ public class DreamcatcherItem extends Item implements ColorableItem, ModelVaryin
     }
 
     public Text getName(ItemStack stack) {
-        return super.getName(stack).copy().setStyle(
-                TextEffectManager.withEffect(
-                        super.getName(stack).getStyle(),
-                        HibiscusPresetEffects.LERP_WAVE_EFFECT,
-                        TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)
-                ).withColor(0xFF9b5815)
-        );
+        return super.getName(stack).copy().setStyle(Morrigan.applyFormatting(super.getName(stack))).withColor(0xFF9b5815);
     }
 
     public int startColor(ItemStack itemStack) {

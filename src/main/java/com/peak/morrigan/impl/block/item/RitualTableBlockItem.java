@@ -10,13 +10,13 @@ import net.minecraft.text.Text;
 /**
  * @author Chemthunder
  */
-public class NevermorianCitadelBlockItem extends BlockItem implements ColorableItem {
-    public NevermorianCitadelBlockItem(Settings settings) {
-        super(MorriganBlocks.NEVERMORIAN_CITADEL, settings);
+public class RitualTableBlockItem extends BlockItem implements ColorableItem {
+    public RitualTableBlockItem(Settings settings) {
+        super(MorriganBlocks.RITUAL_TABLE, settings);
     }
 
     public Text getName(ItemStack stack) {
-        return super.getName(stack).copy().setStyle(Morrigan.applyFormatting(super.getName(stack))).withColor(0xac42ff);
+        return super.getName(stack).copy().setStyle(Morrigan.applyFormatting(super.getName(stack))).withColor(0x691818);
     }
 
     public int startColor(ItemStack itemStack) {

@@ -1,6 +1,5 @@
 package com.peak.morrigan.impl.cca.entity;
 
-import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.entity.LivingEntity;
@@ -44,16 +43,6 @@ public class InBoxComponent implements AutoSyncedComponent, CommonTickingCompone
         }
     }
 
-    public boolean isInBox() {
-        return this.inBox;
-    }
-
-    public void setInBox(boolean inBox) {
-        this.inBox = inBox;
-        this.inBoxTicks = inBox ? 8 : 0;
-        this.sync();
-    }
-
     public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbt.putInt("inBoxTicks", this.inBoxTicks);
         nbt.putBoolean("inBox", this.inBox);
@@ -62,5 +51,19 @@ public class InBoxComponent implements AutoSyncedComponent, CommonTickingCompone
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         this.inBoxTicks = nbt.getInt("inBoxTicks");
         this.inBox = nbt.getBoolean("inBox");
+    }
+
+    public boolean isInBox() {
+        return this.inBox;
+    }
+
+    public void setInBox(boolean inBox) {
+        this.inBox = inBox;
+        this.inBoxTicks = inBox ? 24 : 0;
+        this.sync();
+    }
+
+    public int getInBoxTicks() {
+        return this.inBoxTicks;
     }
 }

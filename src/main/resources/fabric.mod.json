@@ -56,7 +56,9 @@
     "cardinal-components": [
       "morrigan:cultist",
       "morrigan:enchancement_data",
-      "morrigan:ash_profile"
+      "morrigan:ash_profile",
+      "morrigan:in_box",
+      "morrigan:citadel_world_data"
     ]
   }
 }

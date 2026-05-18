@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "top": "morrigan:block/ritual_table_top",
+    "bottom": "morrigan:block/ritual_table_bottom",
+    "side": "morrigan:block/ritual_table_side"
+  }
+}

@@ -2,11 +2,8 @@ package com.peak.morrigan.impl.status_effect;
 
 import com.nitron.nitrogen.util.interfaces.StatusEffectBackground;
 import com.peak.morrigan.impl.Morrigan;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 /**

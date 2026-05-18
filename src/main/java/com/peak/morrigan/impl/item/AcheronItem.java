@@ -70,17 +70,7 @@ public class AcheronItem extends Item implements ColorableItem, ModelVaryingItem
     }
 
     public Text getName(ItemStack stack) {
-        if (MorriganConfig.wavyText) {
-            return super.getName(stack).copy().setStyle(
-                    TextEffectManager.withEffect(
-                            super.getName(stack).getStyle(),
-                            HibiscusPresetEffects.LERP_WAVE_EFFECT,
-                            TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)
-                    ).withColor(endColor(stack))
-            );
-        } else {
-            return super.getName(stack).copy().withColor(endColor(stack));
-        }
+        return super.getName(stack).copy().setStyle(Morrigan.applyFormatting(super.getName(stack))).withColor(endColor(stack));
     }
 
     public int startColor(ItemStack itemStack) {

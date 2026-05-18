@@ -4,6 +4,7 @@
   "ash_profile.morrigan.floracide": "You hear the grass whisper sweet nothings.",
   "ash_profile.morrigan.pyrocide": "LET'S GET MOVING!",
   "block.morrigan.nevermorian_citadel": "Nevermorian Citadel",
+  "block.morrigan.ritual_table": "Ritual Table",
   "category.morrigan": "Morrigan",
   "effect.morrigan.rampage": "Rampage",
   "item.morrigan.acheron": "Acheron",
@@ -23,5 +24,7 @@
   "oath.morrigan.returning_roots.description": "Take back from whence you came.",
   "oath.morrigan.returning_roots.title": "Oath of Returning Roots",
   "oath.morrigan.systematic_martyrdom.description": "One among many; to live is to be more.",
-  "oath.morrigan.systematic_martyrdom.title": "Oath of Systematic Martyrdom"
+  "oath.morrigan.systematic_martyrdom.title": "Oath of Systematic Martyrdom",
+  "tag.entity_type.morrigan.ignored_by_clear": "Ignored By Clear",
+  "tag.item.morrigan.ceremonial_scrolls": "Ceremonial Scrolls"
 }

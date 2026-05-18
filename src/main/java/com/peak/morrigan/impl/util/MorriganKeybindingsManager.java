@@ -3,7 +3,6 @@ package com.peak.morrigan.impl.util;
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
-import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
 import com.peak.morrigan.impl.index.MorriganParticles;
 import com.peak.morrigan.impl.index.MorriganStatusEffects;

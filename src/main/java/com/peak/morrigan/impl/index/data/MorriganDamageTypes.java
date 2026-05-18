@@ -3,12 +3,7 @@ package com.peak.morrigan.impl.index.data;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.omnia.api.registration.core.DamageTypeRegistry;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Chemthunder

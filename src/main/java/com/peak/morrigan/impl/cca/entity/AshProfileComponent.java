@@ -1,7 +1,6 @@
 package com.peak.morrigan.impl.cca.entity;
 
 import com.peak.morrigan.api.AshProfile;
-import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import net.acoyt.acornlib.api.util.MiscUtils;

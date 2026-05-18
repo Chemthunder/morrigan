@@ -3,10 +3,12 @@ package com.peak.morrigan.data;
 import com.peak.morrigan.data.provider.resources.MorriganModelGen;
 import com.peak.morrigan.data.provider.resources.MorriganParticleGen;
 import com.peak.morrigan.data.provider.resources.lang.MorriganLangGen;
+import com.peak.morrigan.data.provider.tag.MorriganEntityTagGen;
+import com.peak.morrigan.data.provider.tag.MorriganItemTagGen;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.index.data.MorriganDamageTypes;
+import com.peak.morrigan.impl.index.tag.MorriganItemTags;
 import com.peak.omnia.api.registration.DataInitializer;
-import com.peak.omnia.impl.Omnia;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -14,7 +16,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryWrapper;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -31,9 +32,14 @@ public class MorriganDataGen implements DataGeneratorEntrypoint {
 
         pack.addProvider(DynamicRegistries::new);
 
+        /* Resources */
         pack.addProvider(MorriganModelGen::new);
         pack.addProvider(MorriganLangGen::new);
         pack.addProvider(MorriganParticleGen::new);
+
+        /* Tags */
+        pack.addProvider(MorriganItemTagGen::new);
+        pack.addProvider(MorriganEntityTagGen::new);
 	}
 
     public void buildRegistry(RegistryBuilder registryBuilder) {

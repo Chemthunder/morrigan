@@ -20,6 +20,8 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
     private final PlayerEntity player;
 
     private boolean cultist = false;
+    private boolean heretic = false;
+
     private Oath swornOath = Oath.EMPTY;
     private String leader = "";
 
@@ -45,6 +47,7 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
 
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         this.cultist = nbt.getBoolean("Cultist");
+        this.heretic = nbt.getBoolean("Heretic");
         this.leader = nbt.getString("Leader");
         this.keybindCooldownTicks = nbt.getInt("KeybindCooldownTicks");
 
@@ -57,6 +60,7 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
 
     public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbt.putBoolean("Cultist", cultist);
+        nbt.putBoolean("Heretic", heretic);
         nbt.putString("Leader", leader);
         nbt.putInt("KeybindCooldownTicks", keybindCooldownTicks);
 
@@ -85,6 +89,10 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
         return this.keybindCooldownTicks;
     }
 
+    public boolean isHeretic() {
+        return this.heretic;
+    }
+
     public void swearOath(Oath oath) {
         this.swornOath = oath;
         this.sync();
@@ -101,6 +109,11 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
 
     public void setKeybindCooldownTicks(int i) {
         this.keybindCooldownTicks = i;
+        this.sync();
+    }
+
+    public void setHeretic(boolean heretic) {
+        this.heretic = heretic;
         this.sync();
     }
 }

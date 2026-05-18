@@ -18,6 +18,7 @@
     "requireAnnotations": true
   },
   "client": [
-    "client.AbstractInventoryScreenMixin"
+    "client.AbstractInventoryScreenMixin",
+    "client.InGameHudMixin"
   ]
 }

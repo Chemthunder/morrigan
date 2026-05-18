@@ -6,9 +6,13 @@ import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
+import com.peak.morrigan.impl.block.RitualTableBlock;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.component.StoredOathComponent;
+import com.peak.morrigan.impl.index.MorriganBlocks;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
+import com.peak.morrigan.impl.index.MorriganOaths;
+import com.peak.morrigan.impl.index.tag.MorriganItemTags;
 import com.peak.morrigan.impl.util.ModUtils;
 import net.acoyt.acornlib.api.item.CustomHitParticleItem;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
@@ -25,12 +29,10 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,7 +48,12 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
                 .component(
                         MorriganDataComponents.STORED_OATH,
                         new StoredOathComponent(Oath.EMPTY)
-                ));
+                )
+                .component(
+                        MorriganDataComponents.HERETIC,
+                        false
+                )
+        );
     }
 
     public static AttributeModifiersComponent createAttributeModifiers() {
@@ -83,7 +90,6 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
         Oath oath = stack.get(MorriganDataComponents.STORED_OATH).oath();
 
         if (oath.isEmpty()) return;
-
         if (!ModUtils.isNaked(target)) return;
 
         CultistComponent component = CultistComponent.KEY.get(target);
@@ -107,7 +113,7 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
                     cultistComponent.setCultist(true);
                     cultistComponent.setLeader(user.getNameForScoreboard());
                     cultistComponent.swearOath(oath);
-                    
+
                     ParticleUtils.spawnSweepParticles(new SweepParticleEffect(0xFF1c1c2a, oath.color()), user);
 
                     if (world.isClient()) {
@@ -137,18 +143,40 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
         ParticleUtils.spawnSweepParticles(new SweepParticleEffect(0xFF1c1c2a, oath.color()), player);
     }
 
-    public Text getName(ItemStack stack) {
-        if (MorriganConfig.wavyText) {
-            return super.getName(stack).copy().setStyle(
-                    TextEffectManager.withEffect(
-                            super.getName(stack).getStyle(),
-                            HibiscusPresetEffects.LERP_WAVE_EFFECT,
-                            TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)
-                    ).withColor(stack.get(MorriganDataComponents.STORED_OATH).oath().color())
-            );
-        } else {
-            return super.getName(stack).copy().withColor(stack.get(MorriganDataComponents.STORED_OATH).oath().color());
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        ItemStack stack = context.getStack();
+        StoredOathComponent oath = stack.get(MorriganDataComponents.STORED_OATH);
+
+        if (player != null) {
+            if (player.isSneaking()) {
+                if (oath != null) {
+                    Oath storedOath = oath.oath();
+
+                    if (player.getOffHandStack().isIn(MorriganItemTags.CEREMONIAL_SCROLLS)) {
+                        if (context.getWorld().getBlockState(context.getBlockPos()).isOf(MorriganBlocks.RITUAL_TABLE)) {
+                            var list = MorriganOaths.OATHS;
+                            var index = list.indexOf(storedOath);
+
+                            Oath toApply;
+
+                            if (index < list.size()) {
+                                toApply = list.get(index + 1);
+                            } else {
+                                toApply = list.getFirst();
+                            }
+
+                            stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(toApply));
+                        }
+                    }
+                }
+            }
         }
+        return super.useOnBlock(context);
+    }
+
+    public Text getName(ItemStack stack) {
+        return super.getName(stack).copy().setStyle(Morrigan.applyFormatting(super.getName(stack)).withColor(stack.get(MorriganDataComponents.STORED_OATH).oath().color()));
     }
 
     public int startColor(ItemStack itemStack) {

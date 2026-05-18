@@ -2,6 +2,7 @@ package com.peak.morrigan.impl.index;
 
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.block.item.NevermorianCitadelBlockItem;
+import com.peak.morrigan.impl.block.item.RitualTableBlockItem;
 import com.peak.morrigan.impl.item.AcheronItem;
 import com.peak.morrigan.impl.item.DreamcatcherItem;
 import com.peak.morrigan.impl.item.SacrificialCleaverItem;
@@ -29,6 +30,10 @@ public interface MorriganItems {
     );
 
     Item CITADEL_ITEM = ITEMS.register("nevermorian_citadel", NevermorianCitadelBlockItem::new, new Item.Settings()
+            .maxCount(1)
+    );
+
+    Item TABLE_ITEM = ITEMS.register("ritual_table", RitualTableBlockItem::new, new Item.Settings()
             .maxCount(1)
     );
 
