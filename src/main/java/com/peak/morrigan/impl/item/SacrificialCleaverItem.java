@@ -160,7 +160,7 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
 
                             Oath toApply;
 
-                            if (index < list.size()) {
+                            if (index < list.size() - 1) {
                                 toApply = list.get(index + 1);
                             } else {
                                 toApply = list.getFirst();
@@ -168,6 +168,8 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
 
                             stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(toApply));
                         }
+                    } else {
+                        stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(Oath.EMPTY));
                     }
                 }
             }
