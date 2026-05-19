@@ -1,6 +1,7 @@
 package com.peak.morrigan.impl.index;
 
 import com.peak.morrigan.impl.Morrigan;
+import com.peak.morrigan.impl.status_effect.FearfulStatusEffect;
 import com.peak.morrigan.impl.status_effect.RampageStatusEffect;
 import net.acoyt.acornlib.api.registrants.StatusEffectRegistrant;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -33,6 +34,20 @@ public interface MorriganStatusEffects {
                     )
                     .addAttributeModifier(
                             EntityAttributes.GENERIC_ATTACK_SPEED, Identifier.ofVanilla("rampage.effect.block_break_speed"), 0.3f, EntityAttributeModifier.Operation.ADD_VALUE
+                    )
+    );
+
+    RegistryEntry<StatusEffect> FEARFUL = STATUS_EFFECTS.registerRef(
+            "fearful",
+            new FearfulStatusEffect(
+                    StatusEffectCategory.NEUTRAL,
+                    0xFF002f5c
+            )
+                    .addAttributeModifier(
+                            EntityAttributes.GENERIC_MOVEMENT_SPEED, Identifier.ofVanilla("fearful.effect.speed"), 0.6f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    )
+                    .addAttributeModifier(
+                            EntityAttributes.GENERIC_STEP_HEIGHT, Identifier.ofVanilla("fearful.effect.step_height"), 0.5f, EntityAttributeModifier.Operation.ADD_VALUE
                     )
     );
 

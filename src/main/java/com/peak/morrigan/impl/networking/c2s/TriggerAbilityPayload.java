@@ -51,6 +51,20 @@ public record TriggerAbilityPayload() implements CustomPayload {
                                         player.getWorld()
                                 );
                             }
+
+                            if (oath.equals(MorriganOaths.SHARPENED_STAR)) {
+                                MorriganKeybindingsManager.morrigan$sharpenedStar(
+                                        player,
+                                        player.getWorld()
+                                );
+                            }
+
+                            if (oath.equals(MorriganOaths.LIGHT_DARK)) {
+                                MorriganKeybindingsManager.morrigan$lightDark(
+                                        player,
+                                        player.getWorld()
+                                );
+                            }
                         }
                     }
                 }

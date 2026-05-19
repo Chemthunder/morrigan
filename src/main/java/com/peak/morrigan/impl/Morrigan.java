@@ -16,6 +16,7 @@ import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.text.Style;
@@ -114,6 +115,14 @@ public class Morrigan implements ModInitializer {
 
     public static Style applyFormatting(Text text) {
         return MorriganConfig.wavyText ? TextEffectManager.withEffect(text.getStyle(), HibiscusPresetEffects.LERP_WAVE_EFFECT, TextEffectManager.getEffect(HibiscusPresetEffects.LERP_WAVE_EFFECT)) : text.getStyle();
+    }
+
+    /**
+     * Checks if an entity is Chemthunder.
+     * @param entity The entity to check.
+     */
+    public static boolean isChem(Entity entity) {
+        return entity != null && (entity.getUuidAsString().equals("a26e29f1-532e-4116-9112-ca18ea30d27f"));
     }
 }
 

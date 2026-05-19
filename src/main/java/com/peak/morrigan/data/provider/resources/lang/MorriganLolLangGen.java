@@ -3,9 +3,7 @@ package com.peak.morrigan.data.provider.resources.lang;
 import com.peak.morrigan.api.AshProfile;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
-import com.peak.morrigan.impl.index.MorriganItems;
 import com.peak.morrigan.impl.index.MorriganOaths;
-import com.peak.morrigan.impl.index.MorriganStatusEffects;
 import com.peak.morrigan.impl.index.tag.MorriganEntityTypeTags;
 import com.peak.morrigan.impl.index.tag.MorriganItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -17,82 +15,92 @@ import java.util.concurrent.CompletableFuture;
 /**
  * @author Chemthunder
  */
-public class MorriganLangGen extends FabricLanguageProvider {
-    public MorriganLangGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-        super(dataOutput, registryLookup);
+public class MorriganLolLangGen extends FabricLanguageProvider {
+    public MorriganLolLangGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, "lol_us", registryLookup);
     }
 
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
-        /* Registrants */
-        MorriganItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
-        MorriganStatusEffects.STATUS_EFFECTS.registerLang(wrapperLookup, translationBuilder);
+        /* Items */
+        translationBuilder.add("item.morrigan.sacrificial_cleaver", "befoul ahh");
+        translationBuilder.add("item.morrigan.scrying_paper", "magik papa");
+        translationBuilder.add("item.morrigan.dreamcatcher", "a miwwion dweams i hav had");
+        translationBuilder.add("item.morrigan.acheron", "scawy stik");
+
+        /* Blocks */
+        translationBuilder.add("block.morrigan.ritual_table", "majik table");
+        translationBuilder.add("block.morrigan.nevermorian_citadel", "jewel of da nevamore");
+
+        /* Effects */
+        translationBuilder.add("effect.morrigan.rampage", "angy >:0");
+        translationBuilder.add("effect.morrigan.fearful", "scawed >n<");
 
         /* Tags */
         MorriganItemTags.TAG.registerLang(wrapperLookup, translationBuilder);
         MorriganEntityTypeTags.TAG.registerLang(wrapperLookup, translationBuilder);
 
-        translationBuilder.add("itemGroup.morrigan", "Morrigan");
+        translationBuilder.add("itemGroup.morrigan", "crow");
 
         // KEYBINDINGS
-        translationBuilder.add("category.morrigan", "Morrigan");
-        translationBuilder.add("key.morrigan.open_cultist_display_screen", "Open Cultist Screen");
-        translationBuilder.add("key.morrigan.trigger_ability", "Use Oath Ability");
+        translationBuilder.add("category.morrigan", "crow");
+        translationBuilder.add("key.morrigan.open_cultist_display_screen", "see ur cult");
+        translationBuilder.add("key.morrigan.trigger_ability", "do tings");
 
-        translationBuilder.add("morrigan.cult_screen.title", "Church of the Nevermore");
-        translationBuilder.add("morrigan.cult_screen.bound", "Bound under %s");
-        translationBuilder.add("morrigan.cult_screen.profile", "Current Profile: %s");
-        translationBuilder.add("morrigan.cult_screen.heretic", "~ SILENCE THE HERETICS ~");
+        translationBuilder.add("morrigan.cult_screen.title", "<o>");
+        translationBuilder.add("morrigan.cult_screen.bound", "owned by %s");
+        translationBuilder.add("morrigan.cult_screen.profile", "current ver: %s");
+        translationBuilder.add("morrigan.cult_screen.heretic", "~ kill da baddos! ~");
 
         // OATHS
         registerOath(translationBuilder, MorriganOaths.PRIESTESS_GAZE,
-                "Bind of the Priesstess's Gaze",
-                "Lay down one's soul to Fesscinenne's will."
+                "eternity of misery",
+                "give it up for one last chance"
         );
 
         registerOath(translationBuilder, MorriganOaths.RETURNING_ROOTS,
-                "Oath of Returning Roots",
-                "Take back from whence you came."
+                "oat of no enchancement",
+                "when u can't adapt, fight back!"
         );
 
         registerOath(translationBuilder, MorriganOaths.PERSEVERING_WILL,
-                "Oath of Persevering Will",
-                "Through suffering we are born stronger."
+                "oat of mira",
+                "hi mira!!!!"
         );
 
         registerOath(translationBuilder, MorriganOaths.SYSTEMATIC_MARTYRDOM,
-                "Oath of Systematic Martyrdom",
-                "One among many; to live is to be more."
+                "oat of plurality",
+                "das a lot of people"
         );
 
         registerOath(translationBuilder, MorriganOaths.SHARPENED_STAR,
-                "Oath of the Sharpened Star",
-                "Fire when ready, soldier."
+                "oat of gun",
+                "pew pew!!!"
         );
 
         registerOath(translationBuilder, MorriganOaths.LIGHT_DARK,
-                "Oath of Light and Dark",
-                "Through light and dark, we shine forward."
+                "oat of eclapse",
+                "startgazing"
         );
 
         // ASHPROFILE
         registerAshProfile(translationBuilder, MorriganAshProfiles.CRYOCIDE,
-                "Cold Feet?"
+                "im cold >:<"
         );
 
         registerAshProfile(translationBuilder, MorriganAshProfiles.FLORACIDE,
-                "You hear the grass whisper sweet nothings."
+                "motha natue"
         );
 
         registerAshProfile(translationBuilder, MorriganAshProfiles.PYROCIDE,
-                "LET'S GET MOVING!"
+                "is very hawt in her"
         );
 
         registerAshProfile(translationBuilder, MorriganAshProfiles.AEROCIDE,
-                "Gotta go fast!"
+                "very fast"
         );
 
         // CONFIG
-        translationBuilder.add("morrigan.midnightconfig.title", "Morrigan");
+        translationBuilder.add("morrigan.midnightconfig.title", "crow");
         translationBuilder.add("morrigan.midnightconfig.wavyText", "Wavy Text");
         translationBuilder.add("morrigan.midnightconfig.indicatorY", "Y-Position of Keybind Indicator");
     }

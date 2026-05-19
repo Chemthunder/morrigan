@@ -1,19 +1,13 @@
 package com.peak.morrigan.impl.item;
 
-import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
-import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import com.peak.morrigan.api.Oath;
-import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
-import com.peak.morrigan.impl.block.RitualTableBlock;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.client.particle.ShockwaveParticleEffect;
 import com.peak.morrigan.impl.component.StoredOathComponent;
 import com.peak.morrigan.impl.index.MorriganBlocks;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
-import com.peak.morrigan.impl.index.MorriganOaths;
-import com.peak.morrigan.impl.index.tag.MorriganItemTags;
 import com.peak.morrigan.impl.util.ModUtils;
 import net.acoyt.acornlib.api.item.CustomHitParticleItem;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;

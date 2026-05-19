@@ -6,10 +6,13 @@ import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
 import com.peak.morrigan.impl.index.MorriganParticles;
 import com.peak.morrigan.impl.index.MorriganStatusEffects;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
@@ -71,7 +74,17 @@ public class MorriganKeybindingsManager {
         } else {
             if (profile.getCurrentProfile().hasAbility()) {
                 if (profile.getCurrentProfile() == MorriganAshProfiles.FLORACIDE) {
-                    // ensnare
+                    LivingEntity target = null;
+
+                    if (MinecraftClient.getInstance().targetedEntity instanceof LivingEntity entity) {
+                        target = entity;
+                    }
+
+                    if (target != null) {
+                        player.sendMessage(Text.of(target.getNameForScoreboard()), true);
+                    } else {
+
+                    }
                 }
 
                 if (profile.getCurrentProfile() == MorriganAshProfiles.PYROCIDE) {
@@ -96,13 +109,48 @@ public class MorriganKeybindingsManager {
                         );
                     }
 
-                    //ModUtils.getCultistInstance(player).setKeybindCooldownTicks(9600);
+                    ModUtils.getCultistInstance(player).setKeybindCooldownTicks(9600);
                 }
 
                 if (profile.getCurrentProfile() == MorriganAshProfiles.AEROCIDE) {
-                    // fearful child
+                    if (world instanceof ServerWorld serverWorld) {
+                        player.addStatusEffect(
+                                new StatusEffectInstance(
+                                        MorriganStatusEffects.FEARFUL,
+                                        100
+                                )
+                        );
+
+                        serverWorld.spawnParticles(
+                                ParticleTypes.GUST_EMITTER_SMALL,
+                                player.getX(),
+                                player.getY(),
+                                player.getZ(),
+                                3,
+                                0.4f,
+                                0.9f,
+                                0.4f,
+                                0.2f
+                        );
+                    }
+
+             //       ModUtils.getCultistInstance(player).setKeybindCooldownTicks(4800);
                 }
             }
         }
+    }
+
+    public static void morrigan$sharpenedStar(PlayerEntity player, World world) {
+
+    }
+
+    public static void morrigan$lightDark(PlayerEntity player, World world) {
+        if (world.isDay()) {
+
+        } else {
+
+        }
+
+        ModUtils.getCultistInstance(player).setKeybindCooldownTicks(500);
     }
 }

@@ -3,8 +3,6 @@ package com.peak.morrigan.api;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
-import java.util.UUID;
-
 /**
  * @author Chemthunder
  */

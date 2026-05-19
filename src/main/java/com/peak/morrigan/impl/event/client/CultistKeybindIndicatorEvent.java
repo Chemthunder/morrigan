@@ -1,5 +1,6 @@
 package com.peak.morrigan.impl.event.client;
 
+import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
@@ -31,7 +32,7 @@ public class CultistKeybindIndicatorEvent implements HudRenderCallback {
                 drawContext.drawGuiTexture(
                         component.canUseKeybind() ? EYE_OPEN : EYE_CLOSED,
                         drawContext.getScaledWindowWidth() / 2 - 8,
-                        drawContext.getScaledWindowHeight() / 2 + 20,
+                        drawContext.getScaledWindowHeight() / 2 + MorriganConfig.indicatorY,
                         15,
                         15
                 );

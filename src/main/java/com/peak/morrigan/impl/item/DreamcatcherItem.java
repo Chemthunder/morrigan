@@ -1,7 +1,5 @@
 package com.peak.morrigan.impl.item;
 
-import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
-import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.world.CultDataComponent;

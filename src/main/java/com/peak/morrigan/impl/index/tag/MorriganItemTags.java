@@ -3,7 +3,6 @@ package com.peak.morrigan.impl.index.tag;
 import com.peak.morrigan.impl.Morrigan;
 import net.acoyt.acornlib.api.builder.TagBuilder;
 import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 

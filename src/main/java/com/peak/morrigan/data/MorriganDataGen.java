@@ -3,11 +3,11 @@ package com.peak.morrigan.data;
 import com.peak.morrigan.data.provider.resources.MorriganModelGen;
 import com.peak.morrigan.data.provider.resources.MorriganParticleGen;
 import com.peak.morrigan.data.provider.resources.lang.MorriganLangGen;
+import com.peak.morrigan.data.provider.resources.lang.MorriganLolLangGen;
 import com.peak.morrigan.data.provider.tag.MorriganEntityTagGen;
 import com.peak.morrigan.data.provider.tag.MorriganItemTagGen;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.index.data.MorriganDamageTypes;
-import com.peak.morrigan.impl.index.tag.MorriganItemTags;
 import com.peak.omnia.api.registration.DataInitializer;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -33,8 +33,10 @@ public class MorriganDataGen implements DataGeneratorEntrypoint {
         pack.addProvider(DynamicRegistries::new);
 
         /* Resources */
-        pack.addProvider(MorriganModelGen::new);
         pack.addProvider(MorriganLangGen::new);
+        pack.addProvider(MorriganLolLangGen::new);
+
+        pack.addProvider(MorriganModelGen::new);
         pack.addProvider(MorriganParticleGen::new);
 
         /* Tags */
@@ -46,7 +48,7 @@ public class MorriganDataGen implements DataGeneratorEntrypoint {
         PRIMARY.buildRegistries(registryBuilder);
     }
 
-    public static class DynamicRegistries extends FabricDynamicRegistryProvider {
+    public static final class DynamicRegistries extends FabricDynamicRegistryProvider {
         public DynamicRegistries(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
             super(output, registriesFuture);
         }

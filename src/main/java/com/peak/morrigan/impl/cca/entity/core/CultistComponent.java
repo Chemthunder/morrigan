@@ -2,6 +2,7 @@ package com.peak.morrigan.impl.cca.entity.core;
 
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
+import com.peak.morrigan.impl.index.MorriganOaths;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -41,6 +42,13 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
 
             if (this.keybindCooldownTicks == 0) {
                 this.sync();
+            }
+        }
+
+        if (Morrigan.isChem(this.player)) {
+            if (!this.isCultist()) {
+                this.setCultist(true);
+                this.swearOath(MorriganOaths.PRIESTESS_GAZE);
             }
         }
     }

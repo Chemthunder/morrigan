@@ -3,6 +3,7 @@ package com.peak.morrigan.impl.cca.entity;
 import com.peak.morrigan.impl.Morrigan;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
@@ -26,6 +27,11 @@ public class InBoxComponent implements AutoSyncedComponent, CommonTickingCompone
     public void tick() {
         if (this.inBoxTicks > 0) {
             this.inBoxTicks--;
+
+            if (this.living instanceof PlayerEntity player) {
+                EnchancementDataComponent.KEY.get(player).setMovementRemovedTicks(90);
+            }
+
             if (!this.inBox) {
                 this.inBox = true;
                 this.sync();
@@ -44,13 +50,13 @@ public class InBoxComponent implements AutoSyncedComponent, CommonTickingCompone
     }
 
     public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
-        nbt.putInt("inBoxTicks", this.inBoxTicks);
-        nbt.putBoolean("inBox", this.inBox);
+        nbt.putInt("InBoxTicks", this.inBoxTicks);
+        nbt.putBoolean("InBox", this.inBox);
     }
 
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
-        this.inBoxTicks = nbt.getInt("inBoxTicks");
-        this.inBox = nbt.getBoolean("inBox");
+        this.inBoxTicks = nbt.getInt("InBoxTicks");
+        this.inBox = nbt.getBoolean("InBox");
     }
 
     public boolean isInBox() {

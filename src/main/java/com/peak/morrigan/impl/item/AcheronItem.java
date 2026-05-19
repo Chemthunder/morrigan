@@ -1,9 +1,6 @@
 package com.peak.morrigan.impl.item;
 
-import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
-import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
-import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;

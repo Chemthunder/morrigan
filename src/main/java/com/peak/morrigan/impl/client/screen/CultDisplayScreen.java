@@ -116,27 +116,32 @@ public class CultDisplayScreen extends Screen {
                 );
             }
 
-            for (int i = 0; i < 2; i++) this.renderDarkening(context);
-
             if (!cult.getHeretics().isEmpty()) {
+                int potentialOffset = cultistComponent.getOath().equals(MorriganOaths.SYSTEMATIC_MARTYRDOM) ? 35 : 0;
+
                 context.drawCenteredTextWithShadow(
                         this.textRenderer,
-                        Text.literal("I'm a placeholder!"),
+                        Text.translatable("morrigan.cult_screen.heretic"),
                         context.getScaledWindowWidth() / 2,
-                        context.getScaledWindowHeight() / 2,
+                        (context.getScaledWindowHeight() / 2 + potentialOffset),
                         0xffffff
                 );
 
                 cult.getHeretics().forEach(heretic -> {
+                    var list = cult.getHeretics();
+                    int index = list.indexOf(heretic);
+
                     context.drawCenteredTextWithShadow(
                             this.textRenderer,
-                            Text.literal("I'm a placeholder!"),
+                            Text.literal(heretic.name()),
                             context.getScaledWindowWidth() / 2,
-                            context.getScaledWindowHeight() / 2,
+                            context.getScaledWindowHeight() / 2 + (20 + potentialOffset) + (index * 7),
                             0xffffff
                     );
                 });
             }
+
+            for (int i = 0; i < 2; i++) this.renderDarkening(context);
         }
     }
 }
