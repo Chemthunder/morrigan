@@ -1,7 +1,10 @@
 package com.peak.morrigan.mixin.client;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.InBoxComponent;
+import com.peak.morrigan.impl.util.ModUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -29,6 +32,16 @@ public abstract class InGameHudMixin {
                 float opacity = ticks > 50 ? 1f : ticks / 50.0f;
                 this.renderOverlay(context, CITADEL_VIGNETTE, opacity);
             }
+        }
+    }
+
+    @WrapMethod(method = "renderChat")
+    private void morrigan$disableChatIfHeretic(DrawContext context, RenderTickCounter tickCounter, Operation<Void> original) {
+        PlayerEntity player = MinecraftClient.getInstance().player;
+        if (player == null) return;
+
+        if (!ModUtils.getCultistInstance(player).isHeretic()) {
+            original.call(context, tickCounter);
         }
     }
 }

@@ -1,15 +1,17 @@
 {
   "required": true,
   "package": "com.peak.morrigan.mixin",
-  "plugin": "com.peak.morrigan.impl.util.MorriganMixinPlugin",
+  "plugin": "com.peak.morrigan.compat.MorriganMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ItemMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
     "compat.enchancement.AirJumpComponentMixin",
     "compat.enchancement.DirectionBurstComponentMixin",
-    "compat.enchancement.RotationBurstComponentMixin"
+    "compat.enchancement.RotationBurstComponentMixin",
+    "compat.voicechat.ServerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

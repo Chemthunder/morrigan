@@ -38,6 +38,14 @@ public interface MorriganItemGroups {
             itemGroup.add(cleaverVariant);
         }
 
+        itemGroup.add(MorriganItems.SCRYING_PAPER);
+        for (Oath oath : MorriganOaths.OATHS) {
+            ItemStack scryingPaperVariant = new ItemStack(MorriganItems.SCRYING_PAPER);
+            scryingPaperVariant.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(oath));
+
+            itemGroup.add(scryingPaperVariant);
+        }
+
         itemGroup.add(MorriganItems.DREAMCATCHER);
         itemGroup.add(MorriganItems.ACHERON);
         itemGroup.add(MorriganItems.CITADEL_ITEM);

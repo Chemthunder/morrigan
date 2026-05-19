@@ -5,11 +5,13 @@ import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
+import com.peak.morrigan.impl.cca.world.CultDataComponent;
 import com.peak.morrigan.impl.index.MorriganOaths;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.world.World;
 
 /**
  * @author Chemthunder
@@ -37,9 +39,13 @@ public class CultDisplayScreen extends Screen {
 
         PlayerEntity player = this.client.player;
         if (player == null) return;
+        World world = this.client.world;
+        if (world == null) return;
 
         CultistComponent cultistComponent = CultistComponent.KEY.get(player);
         AshProfileComponent ashProfileComponent = AshProfileComponent.KEY.get(player);
+        CultDataComponent cult = CultDataComponent.KEY.get(world);
+
         Oath oath = cultistComponent.getOath();
 
         if (cultistComponent.isCultist()) {
@@ -111,11 +117,26 @@ public class CultDisplayScreen extends Screen {
             }
 
             for (int i = 0; i < 2; i++) this.renderDarkening(context);
+
+            if (!cult.getHeretics().isEmpty()) {
+                context.drawCenteredTextWithShadow(
+                        this.textRenderer,
+                        Text.literal("I'm a placeholder!"),
+                        context.getScaledWindowWidth() / 2,
+                        context.getScaledWindowHeight() / 2,
+                        0xffffff
+                );
+
+                cult.getHeretics().forEach(heretic -> {
+                    context.drawCenteredTextWithShadow(
+                            this.textRenderer,
+                            Text.literal("I'm a placeholder!"),
+                            context.getScaledWindowWidth() / 2,
+                            context.getScaledWindowHeight() / 2,
+                            0xffffff
+                    );
+                });
+            }
         }
     }
 }
-
-/**
- * NOTE!
- * Have the description change for Systematic Martyr depending on which profile it's in.
- */

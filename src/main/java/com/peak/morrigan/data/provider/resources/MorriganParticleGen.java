@@ -17,7 +17,14 @@ public class MorriganParticleGen extends AcornParticleProvider {
     public void generate(ParticleDataConsumer consumer) {
         consumer.accept(MorriganParticles.RAGING, Morrigan.id("raging"));
 
-      //  consumer.accept(MorriganParticles.SHOCKWAVE, morrigan$rangeBetween(Morrigan.id("shockwave/shockwave"), 1, 8));
+        consumer.accept(
+                MorriganParticles.SHOCKWAVE,
+                morrigan$rangeBetween(
+                        Morrigan.id("shockwave/shockwave"),
+                        0,
+                        7
+                )
+        );
     }
 
     public final Identifier[] morrigan$rangeBetween(Identifier texture, int minInclusive, int maxInclusive) {

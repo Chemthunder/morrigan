@@ -4,14 +4,18 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.nitron.nitrogen.util.interfaces.ColorableItem;
 import com.peak.morrigan.impl.Morrigan;
+import com.peak.morrigan.impl.cca.world.CultDataComponent;
+import com.peak.morrigan.impl.util.ModUtils;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -34,6 +38,23 @@ public class DreamcatcherItem extends Item implements ColorableItem, ModelVaryin
                 Morrigan.id("dreamcatcher"),
                 Morrigan.id("dreamcatcher_handheld")
         );
+    }
+
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (attacker instanceof PlayerEntity player) {
+            if (target instanceof PlayerEntity) {
+                World world = player.getWorld();
+
+                CultDataComponent cult = CultDataComponent.KEY.get(world);
+
+                if (ModUtils.getCultistInstance(target).isCultist()) {
+                    cult.createHeretic(target.getNameForScoreboard(), target.getUuid());
+                    ModUtils.getCultistInstance(target).setHeretic(true);
+                }
+            }
+        }
+
+        return super.postHit(stack, target, attacker);
     }
 
     public Text getName(ItemStack stack) {

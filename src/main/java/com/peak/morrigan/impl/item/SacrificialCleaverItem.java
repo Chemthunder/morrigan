@@ -8,6 +8,7 @@ import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.block.RitualTableBlock;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
+import com.peak.morrigan.impl.client.particle.ShockwaveParticleEffect;
 import com.peak.morrigan.impl.component.StoredOathComponent;
 import com.peak.morrigan.impl.index.MorriganBlocks;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
@@ -31,8 +32,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -145,31 +148,40 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
 
     public ActionResult useOnBlock(ItemUsageContext context) {
         PlayerEntity player = context.getPlayer();
+        World world = context.getWorld();
         ItemStack stack = context.getStack();
         StoredOathComponent oath = stack.get(MorriganDataComponents.STORED_OATH);
 
         if (player != null) {
             if (player.isSneaking()) {
                 if (oath != null) {
-                    Oath storedOath = oath.oath();
-
-                    if (player.getOffHandStack().isIn(MorriganItemTags.CEREMONIAL_SCROLLS)) {
-                        if (context.getWorld().getBlockState(context.getBlockPos()).isOf(MorriganBlocks.RITUAL_TABLE)) {
-                            var list = MorriganOaths.OATHS;
-                            var index = list.indexOf(storedOath);
-
-                            Oath toApply;
-
-                            if (index < list.size() - 1) {
-                                toApply = list.get(index + 1);
-                            } else {
-                                toApply = list.getFirst();
-                            }
+                    if (context.getWorld().getBlockState(context.getBlockPos()).isOf(MorriganBlocks.RITUAL_TABLE)) {
+                        if (player.getOffHandStack().getItem() instanceof ScryingPaperItem) {
+                            Oath toApply = player.getOffHandStack().get(MorriganDataComponents.STORED_OATH).oath();
 
                             stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(toApply));
+
+                            if (world instanceof ServerWorld serverWorld) {
+                                serverWorld.spawnParticles(
+                                        new ShockwaveParticleEffect(
+                                                toApply.color(),
+                                                5,
+                                                Direction.Axis.Y
+                                        ),
+                                        context.getBlockPos().getX() + 0.5f,
+                                        context.getBlockPos().getY() + 1.5f,
+                                        context.getBlockPos().getZ() + 0.5f,
+                                        1,
+                                        0,
+                                        0,
+                                        0,
+                                        1
+                                );
+                            }
+
+                            player.getOffHandStack().split(1);
+                            return ActionResult.FAIL;
                         }
-                    } else {
-                        stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(Oath.EMPTY));
                     }
                 }
             }

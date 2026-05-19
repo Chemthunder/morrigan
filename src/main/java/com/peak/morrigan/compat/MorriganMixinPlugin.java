@@ -1,4 +1,4 @@
-package com.peak.morrigan.impl.util;
+package com.peak.morrigan.compat;
 
 import net.acoyt.acornlib.api.template.CompatMixinPlugin;
 

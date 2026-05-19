@@ -3,12 +3,14 @@ package com.peak.morrigan.impl;
 import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.*;
+import com.peak.morrigan.impl.util.ModUtils;
 import com.peak.morrigan.impl.util.MorriganKeybindings;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
@@ -26,8 +28,8 @@ import org.slf4j.LoggerFactory;
  * @author Chemthunder
  */
 public class Morrigan implements ModInitializer {
-	public static final String MOD_ID = "morrigan";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final String MOD_ID = "morrigan";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public static final ALib.ModMenuData MENUDATA = new ALib.ModMenuData(
             Text.literal("Morrigan").withColor(0xFFac42ff),
@@ -35,7 +37,7 @@ public class Morrigan implements ModInitializer {
             Text.literal("\"Man has no need to fear that which lays in the dark--that which should never be awakened.\"")
     );
 
-	public void onInitialize() {
+    public void onInitialize() {
         ALib.registerModData(MOD_ID, MENUDATA);
 
         MorriganItems.init();
@@ -55,7 +57,7 @@ public class Morrigan implements ModInitializer {
 
         MorriganKeybindings.register();
 
-		LOGGER.info("Morrigan has initialized internally!");
+        LOGGER.info("Morrigan has initialized internally!");
 
         MidnightConfig.init(MOD_ID, MorriganConfig.class);
 
@@ -89,9 +91,22 @@ public class Morrigan implements ModInitializer {
 
                         return Command.SINGLE_SUCCESS;
                     }))
+
+                    .then(CommandManager.literal("hereticStatus")
+                            .then(CommandManager.argument("state", BoolArgumentType.bool()).executes(context -> {
+                                boolean toApply = BoolArgumentType.getBool(context, "state");
+
+                                ModUtils.getCultistInstance(context.getSource().getPlayerOrThrow()).setHeretic(toApply);
+                                return Command.SINGLE_SUCCESS;
+                            }))
+                            .executes(context -> {
+                                context.getSource().sendFeedback(() -> Text.literal("Heretic State: " + ModUtils.getCultistInstance(context.getSource().getPlayer()).isHeretic()), true);
+                                return Command.SINGLE_SUCCESS;
+                            })
+                    )
             );
         }); // TODO: move morrigan debug to its own class
-	}
+    }
 
     public static Identifier id(String path) {
         return Identifier.of(MOD_ID, path);

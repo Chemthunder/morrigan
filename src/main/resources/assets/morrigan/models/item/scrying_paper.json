@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "item/paper",
+    "layer1": "morrigan:item/scrying_paper"
+  }
+}

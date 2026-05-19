@@ -4,6 +4,7 @@ import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
 import com.peak.morrigan.impl.cca.entity.InBoxComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
+import com.peak.morrigan.impl.cca.world.CultDataComponent;
 import net.minecraft.entity.LivingEntity;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
@@ -41,6 +42,9 @@ public class MorriganComponents implements EntityComponentInitializer, WorldComp
     }
 
     public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
-
+        registry.register(
+                CultDataComponent.KEY,
+                CultDataComponent::new
+        );
     }
 }
