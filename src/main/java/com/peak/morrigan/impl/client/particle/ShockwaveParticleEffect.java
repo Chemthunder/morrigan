@@ -14,7 +14,6 @@ import net.minecraft.util.math.Direction;
 import org.joml.Vector3f;
 
 public record ShockwaveParticleEffect(int color, float size, Vector3f rotation) implements ParticleEffect {
-
     public static final Codec<Vector3f> ROTATION_CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.FLOAT.fieldOf("x").forGetter(Vector3f::x),
             Codec.FLOAT.fieldOf("y").forGetter(Vector3f::y),
@@ -40,7 +39,6 @@ public record ShockwaveParticleEffect(int color, float size, Vector3f rotation) 
             ROTATION_PACKET_CODEC,     ShockwaveParticleEffect::rotation,
             ShockwaveParticleEffect::new
     );
-
 
     public ShockwaveParticleEffect(int color, float size, float rotX, float rotY, float rotZ) {
         this(color, size, new Vector3f(rotX, rotY, rotZ));

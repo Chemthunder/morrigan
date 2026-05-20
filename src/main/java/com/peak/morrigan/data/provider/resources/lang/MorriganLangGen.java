@@ -31,19 +31,21 @@ public class MorriganLangGen extends FabricLanguageProvider {
         MorriganItemTags.TAG.registerLang(wrapperLookup, translationBuilder);
         MorriganEntityTypeTags.TAG.registerLang(wrapperLookup, translationBuilder);
 
+        /* Miscs */
         translationBuilder.add("itemGroup.morrigan", "Morrigan");
 
-        // KEYBINDINGS
+        /* Keybindings */
         translationBuilder.add("category.morrigan", "Morrigan");
         translationBuilder.add("key.morrigan.open_cultist_display_screen", "Open Cultist Screen");
         translationBuilder.add("key.morrigan.trigger_ability", "Use Oath Ability");
 
+        /* Cult Screen */
         translationBuilder.add("morrigan.cult_screen.title", "Church of the Nevermore");
         translationBuilder.add("morrigan.cult_screen.bound", "Bound under %s");
         translationBuilder.add("morrigan.cult_screen.profile", "Current Profile: %s");
         translationBuilder.add("morrigan.cult_screen.heretic", "~ SILENCE THE HERETICS ~");
 
-        // OATHS
+        /* Oaths */
         registerOath(translationBuilder, MorriganOaths.PRIESTESS_GAZE,
                 "Bind of the Priesstess's Gaze",
                 "Lay down one's soul to Fesscinenne's will."
@@ -76,7 +78,7 @@ public class MorriganLangGen extends FabricLanguageProvider {
 
         translationBuilder.add("oath.morrigan.returning_roots.heads_up", "Emitting : %s");
 
-        // ASHPROFILE
+        /* Ash Profiles */
         registerAshProfile(translationBuilder, MorriganAshProfiles.CRYOCIDE,
                 "Cold Feet?"
         );
@@ -93,14 +95,23 @@ public class MorriganLangGen extends FabricLanguageProvider {
                 "Gotta go fast!"
         );
 
-        // CONFIG
+        /* Config */
         translationBuilder.add("morrigan.midnightconfig.title", "Morrigan");
         translationBuilder.add("morrigan.midnightconfig.wavyText", "Wavy Text");
         translationBuilder.add("morrigan.midnightconfig.indicatorY", "Y-Position of Keybind Indicator");
 
-        // OTHER
+        /* Special Kills */
         translationBuilder.add("death.cleaver", "%s was indoctrinated by %s");
         translationBuilder.add("death.acheron", "%s had their world ripped apart by %s");
+
+        /* Damage Types Otherwise */
+        translationBuilder.add("death.attack.extol", "%1$s couldn't bear her gaze");
+        translationBuilder.add("death.attack.extol.player", "%1$s couldn't bear her gaze when focused on %2$s");
+        translationBuilder.add("death.attack.extol.item", "%1$s couldn't bear her gaze when focused on %2$s, wielding %3$s");
+
+        translationBuilder.add("death.attack.beseech", "%1$s had their mind shattered");
+        translationBuilder.add("death.attack.beseech.player", "%1$s had their mind shattered by %2$s");
+        translationBuilder.add("death.attack.beseech.item", "%1$s had their mind shattered by %2$s, wielding %3$s");
     }
 
     public static void registerOath(TranslationBuilder translationBuilder, Oath oath, String title, String description) {

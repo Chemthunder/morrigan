@@ -14,6 +14,7 @@ import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 public class InBoxComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<InBoxComponent> KEY = MiscUtils.getOrCreateKey(Morrigan.id("in_box"), InBoxComponent.class);
     private final LivingEntity living;
+    
     private int inBoxTicks = 0;
     private boolean inBox = false;
 

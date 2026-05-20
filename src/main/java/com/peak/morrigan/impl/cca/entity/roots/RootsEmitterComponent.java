@@ -28,13 +28,7 @@ public class RootsEmitterComponent implements AutoSyncedComponent, CommonTicking
         if (this.emitting) {
             World world = player.getWorld();
 
-            world.getEntitiesByClass(
-                    PlayerEntity.class,
-                    new Box(
-                            player.getBlockPos()
-                    ).expand(15),
-                    entity -> true
-            ).forEach(capture -> {
+            world.getEntitiesByClass(PlayerEntity.class, new Box(player.getBlockPos()).expand(15), entity -> true).forEach(capture -> {
                 RootsVictimComponent rootsVictimComponent = RootsVictimComponent.KEY.get(capture);
                 rootsVictimComponent.setMovementRemovedTicks(80);
             });

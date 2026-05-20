@@ -13,8 +13,17 @@ import net.minecraft.network.codec.PacketCodecs;
 public interface MorriganDataComponents {
     ComponentTypeRegistrant COMPONENTS = new ComponentTypeRegistrant(Morrigan.MOD_ID);
 
-    ComponentType<StoredOathComponent> STORED_OATH = COMPONENTS.register("stored_oath", StoredOathComponent.CODEC, StoredOathComponent.PACKET_CODEC);
-    ComponentType<Boolean> HERETIC = COMPONENTS.register("heretic", Codec.BOOL, PacketCodecs.BOOL);
+    ComponentType<StoredOathComponent> STORED_OATH = COMPONENTS.register(
+        "stored_oath",
+        StoredOathComponent.CODEC,
+        StoredOathComponent.PACKET_CODEC
+    );
+
+    ComponentType<Boolean> HERETIC = COMPONENTS.register(
+        "heretic",
+        Codec.BOOL,
+        PacketCodecs.BOOL
+    );
 
     static void init() {}
 }

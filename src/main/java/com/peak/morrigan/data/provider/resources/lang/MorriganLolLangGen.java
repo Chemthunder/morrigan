@@ -82,6 +82,8 @@ public class MorriganLolLangGen extends FabricLanguageProvider {
                 "startgazing"
         );
 
+        translationBuilder.add("oath.morrigan.returning_roots.heads_up", "u are emittin : %s");
+
         // ASHPROFILE
         registerAshProfile(translationBuilder, MorriganAshProfiles.CRYOCIDE,
                 "im cold >:<"
@@ -103,6 +105,10 @@ public class MorriganLolLangGen extends FabricLanguageProvider {
         translationBuilder.add("morrigan.midnightconfig.title", "crow");
         translationBuilder.add("morrigan.midnightconfig.wavyText", "Wavy Text");
         translationBuilder.add("morrigan.midnightconfig.indicatorY", "Y-Position of Keybind Indicator");
+
+        /* Special Kills */
+        translationBuilder.add("death.cleaver", "%s got put in da cult by %s");
+        translationBuilder.add("death.acheron", "%s was messed tf up by %s");
     }
 
     public static void registerOath(TranslationBuilder translationBuilder, Oath oath, String title, String description) {

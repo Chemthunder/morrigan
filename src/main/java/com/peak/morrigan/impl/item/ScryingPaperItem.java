@@ -35,15 +35,14 @@ public class ScryingPaperItem extends Item implements ColorableItem {
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         Oath oath = stack.get(MorriganDataComponents.STORED_OATH).oath();
 
-        if (!oath.isEmpty()) {
-            tooltip.add(oath.title());
-            tooltip.add(
-                    oath.description().copy().formatted(
-                            Formatting.DARK_GRAY,
-                            Formatting.ITALIC
-                    )
-            );
-        }
+        if (oath.isEmpty()) return;
+        tooltip.add(oath.title());
+        tooltip.add(
+                oath.description().copy().formatted(
+                    Formatting.DARK_GRAY,
+                    Formatting.ITALIC
+                )
+        );
     }
 
     public ActionResult useOnBlock(ItemUsageContext context) {
@@ -58,12 +57,7 @@ public class ScryingPaperItem extends Item implements ColorableItem {
             var index = list.indexOf(storedOath);
 
             Oath toApply;
-
-            if (index < list.size() - 1) {
-                toApply = list.get(index + 1);
-            } else {
-                toApply = list.getFirst();
-            }
+            toApply = (index < list.size() - 1) ? list.get(index + 1) : list.getFirst();
 
             stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(toApply));
             return ActionResult.FAIL;

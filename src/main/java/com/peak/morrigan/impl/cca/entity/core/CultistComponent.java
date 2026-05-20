@@ -106,8 +106,8 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
         this.sync();
     }
 
-    public void setCultist(boolean bl) {
-        this.cultist = bl;
+    public void setCultist(boolean cultist) {
+        this.cultist = cultist;
         this.sync();
     }
 
@@ -115,8 +115,8 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
         this.leader = leader;
     }
 
-    public void setKeybindCooldownTicks(int i) {
-        this.keybindCooldownTicks = i;
+    public void setKeybindCooldownTicks(int ticks) {
+        this.keybindCooldownTicks = ticks;
         this.sync();
     }
 

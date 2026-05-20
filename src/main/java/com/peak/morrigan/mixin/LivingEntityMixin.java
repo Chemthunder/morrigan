@@ -42,7 +42,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     }
 
     @Inject(method = "tryUseTotem", at = @At(value = "HEAD"), cancellable = true)
-    private void morrigan$cleaver(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+    private void morrigan$cleaverIndoctrinate(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity living = (LivingEntity) (Object) this;
         if (living instanceof PlayerEntity target) {
 

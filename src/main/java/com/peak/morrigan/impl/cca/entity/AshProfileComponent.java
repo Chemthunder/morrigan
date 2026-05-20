@@ -58,8 +58,8 @@ public class AshProfileComponent implements AutoSyncedComponent, CommonTickingCo
         return this.currentProfile;
     }
 
-    public void setCurrentProfile(AshProfile s) {
-        this.currentProfile = s;
+    public void setCurrentProfile(AshProfile profile) {
+        this.currentProfile = profile;
         this.sync();
     }
 }

@@ -4,7 +4,7 @@
   "version": "${version}",
   
   "name": "Morrigan",
-  "description": "gay",
+  "description": "",
   "authors": [
     "Chemthunder"
   ],
@@ -16,7 +16,7 @@
     "DexFlex_VT - Assets"
   ],
 
-  "license": "CC0-1.0",
+  "license": "ARR, refer to owner.",
   "icon": "assets/morrigan/icon.png",
   "environment": "*",
 
@@ -55,9 +55,11 @@
   "custom": {
     "cardinal-components": [
       "morrigan:cultist",
+      "morrigan:cult_data",
+
       "morrigan:ash_profile",
       "morrigan:in_box",
-      "morrigan:cult_data",
+
       "morrigan:lock_movement",
 
       "morrigan:roots_victim",

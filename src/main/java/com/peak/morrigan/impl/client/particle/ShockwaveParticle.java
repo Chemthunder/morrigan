@@ -46,7 +46,6 @@ public class ShockwaveParticle extends SpriteBillboardParticle {
         float z = (float) (MathHelper.lerp(ticks, this.prevPosZ, this.z) - camPos.getZ());
         float size = this.getSize(ticks);
 
-
         Vector3f[] verts = {
                 new Vector3f(0.0F, -1.0F, -1.0F),
                 new Vector3f(0.0F, -1.0F,  1.0F),
@@ -84,7 +83,6 @@ public class ShockwaveParticle extends SpriteBillboardParticle {
     }
 
     public record Factory(SpriteProvider spriteProvider) implements ParticleFactory<ShockwaveParticleEffect> {
-        @Override
         public Particle createParticle(ShockwaveParticleEffect parameters, ClientWorld world, double x, double y, double z, double vx, double vy, double vz) {
             return new ShockwaveParticle(world, x, y, z, this.spriteProvider, parameters);
         }

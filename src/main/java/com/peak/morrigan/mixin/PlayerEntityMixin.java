@@ -30,14 +30,6 @@ public abstract class PlayerEntityMixin {
                 player.heal(living.getHealth() / 2);
             }
         }
-
-        if (CultistComponent.KEY.get(player).getOath().equals(MorriganOaths.SYSTEMATIC_MARTYRDOM)) {
-            if (AshProfileComponent.KEY.get(player).getCurrentProfile() == MorriganAshProfiles.PYROCIDE) {
-                if (target instanceof LivingEntity living) {
-                    player.heal(living.getHealth() / 2);
-                }
-            }
-        }
     }
 
     @WrapMethod(method = "getBlockInteractionRange")

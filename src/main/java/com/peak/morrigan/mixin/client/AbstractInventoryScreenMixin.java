@@ -26,7 +26,7 @@ public abstract class AbstractInventoryScreenMixin {
     )
     private Text morrigan$statusEffectNames(StatusEffect instance, Operation<Text> original) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-
+        
         if (player != null) {
             if (instance.equals(MorriganStatusEffects.RAMPAGE)) {
                 return Text.translatable("effect.morrigan.rampage").withColor(0xff0583);

@@ -49,23 +49,13 @@ public class CultDisplayScreen extends Screen {
         Oath oath = cultistComponent.getOath();
 
         if (cultistComponent.isCultist()) {
-            if (MorriganConfig.wavyText) {
-                context.drawCenteredTextWithShadow(
-                        this.textRenderer,
-                        Text.translatable("morrigan.cult_screen.title").setStyle(Morrigan.applyFormatting(Text.translatable("morrigan.cult_screen.title"))),
-                        context.getScaledWindowWidth() / 2,
-                        30,
-                        0xb600ff
-                );
-            } else {
-                context.drawCenteredTextWithShadow(
-                        this.textRenderer,
-                        Text.translatable("morrigan.cult_screen.title"),
-                        context.getScaledWindowWidth() / 2,
-                        30,
-                        0xb600ff
-                );
-            }
+            context.drawCenteredTextWithShadow(
+                    this.textRenderer,
+                    Text.translatable("morrigan.cult_screen.title").setStyle(Morrigan.applyFormatting(Text.translatable("morrigan.cult_screen.title"))),
+                    context.getScaledWindowWidth() / 2,
+                    30,
+                    0xb600ff
+            );
 
             context.drawCenteredTextWithShadow(
                     this.textRenderer,

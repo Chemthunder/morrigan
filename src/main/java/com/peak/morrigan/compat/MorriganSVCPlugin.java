@@ -9,6 +9,4 @@ public class MorriganSVCPlugin implements VoicechatPlugin {
     public String getPluginId() {
         return "morrigan";
     }
-
-
 }
