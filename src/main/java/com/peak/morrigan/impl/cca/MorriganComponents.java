@@ -1,11 +1,11 @@
 package com.peak.morrigan.impl.cca;
 
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
+import com.peak.morrigan.impl.cca.entity.InBoxComponent;
 import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
+import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.cca.entity.roots.RootsEmitterComponent;
 import com.peak.morrigan.impl.cca.entity.roots.RootsVictimComponent;
-import com.peak.morrigan.impl.cca.entity.InBoxComponent;
-import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.cca.world.CultDataComponent;
 import net.minecraft.entity.LivingEntity;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;

@@ -1,6 +1,5 @@
 package com.peak.morrigan.impl.cca.entity.roots;
 
-import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import com.peak.morrigan.impl.Morrigan;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.entity.player.PlayerEntity;

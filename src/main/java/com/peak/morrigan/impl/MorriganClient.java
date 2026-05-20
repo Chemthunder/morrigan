@@ -9,7 +9,6 @@ import net.acoyt.acornlib.api.event.PlayerOpacityEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * @author Chemthunder

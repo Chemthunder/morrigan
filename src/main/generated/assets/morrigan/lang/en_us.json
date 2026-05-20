@@ -6,6 +6,8 @@
   "block.morrigan.nevermorian_citadel": "Nevermorian Citadel",
   "block.morrigan.ritual_table": "Ritual Table",
   "category.morrigan": "Morrigan",
+  "death.acheron": "%s had their world ripped apart by %s",
+  "death.cleaver": "%s was indoctrinated by %s",
   "effect.morrigan.fearful": "Fearful",
   "effect.morrigan.rampage": "Rampage",
   "item.morrigan.acheron": "Acheron",

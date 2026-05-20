@@ -34,36 +34,38 @@ public record TriggerAbilityPayload() implements CustomPayload {
                 CultistComponent cultistComponent = CultistComponent.KEY.get(player);
 
                 if (cultistComponent.isCultist()) {
-                    if (cultistComponent.canUseKeybind()) {
-                        Oath oath = cultistComponent.getOath();
+                    if (!cultistComponent.isHeretic()) {
+                        if (cultistComponent.canUseKeybind()) {
+                            Oath oath = cultistComponent.getOath();
 
-                        if (MorriganOaths.HAS_ABILITY.contains(oath)) {
-                            if (oath.equals(MorriganOaths.RETURNING_ROOTS)) {
-                                MorriganKeybindingsManager.morrigan$returningroots(
-                                        player,
-                                        player.getWorld()
-                                );
-                            }
+                            if (MorriganOaths.HAS_ABILITY.contains(oath)) {
+                                if (oath.equals(MorriganOaths.RETURNING_ROOTS)) {
+                                    MorriganKeybindingsManager.morrigan$returningroots(
+                                            player,
+                                            player.getWorld()
+                                    );
+                                }
 
-                            if (oath.equals(MorriganOaths.SYSTEMATIC_MARTYRDOM)) {
-                                MorriganKeybindingsManager.morrigan$sysMartyr(
-                                        player,
-                                        player.getWorld()
-                                );
-                            }
+                                if (oath.equals(MorriganOaths.SYSTEMATIC_MARTYRDOM)) {
+                                    MorriganKeybindingsManager.morrigan$sysMartyr(
+                                            player,
+                                            player.getWorld()
+                                    );
+                                }
 
-                            if (oath.equals(MorriganOaths.SHARPENED_STAR)) {
-                                MorriganKeybindingsManager.morrigan$sharpenedStar(
-                                        player,
-                                        player.getWorld()
-                                );
-                            }
+                                if (oath.equals(MorriganOaths.SHARPENED_STAR)) {
+                                    MorriganKeybindingsManager.morrigan$sharpenedStar(
+                                            player,
+                                            player.getWorld()
+                                    );
+                                }
 
-                            if (oath.equals(MorriganOaths.LIGHT_DARK)) {
-                                MorriganKeybindingsManager.morrigan$lightDark(
-                                        player,
-                                        player.getWorld()
-                                );
+                                if (oath.equals(MorriganOaths.LIGHT_DARK)) {
+                                    MorriganKeybindingsManager.morrigan$lightDark(
+                                            player,
+                                            player.getWorld()
+                                    );
+                                }
                             }
                         }
                     }

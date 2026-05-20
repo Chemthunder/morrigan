@@ -26,6 +26,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
@@ -86,6 +87,9 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
     public void getKillEffect(PlayerEntity player, PlayerEntity target, World world, ItemStack stack) {
         Oath oath = stack.get(MorriganDataComponents.STORED_OATH).oath();
 
+        MinecraftServer server = world.getServer();
+        if (server == null) return;
+
         if (oath.isEmpty()) return;
         if (!ModUtils.isNaked(target)) return;
 
@@ -95,8 +99,7 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
 
         component.swearOath(oath);
 
-        target.sendMessage(Text.literal("You have been sworn under " + component.getLeader() + " in the " + component.getOath().title().getString()).formatted(Formatting.ITALIC, Formatting.YELLOW), true);
-        player.sendMessage(Text.literal("You have been sworn under " + component.getLeader() + " in the " + component.getOath().title().getString()).formatted(Formatting.ITALIC, Formatting.YELLOW), true);
+        server.getPlayerManager().broadcast(Text.translatable("death.cleaver", target.getNameForScoreboard(), player.getNameForScoreboard()), false);
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

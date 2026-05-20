@@ -1,14 +1,12 @@
 package com.peak.morrigan.impl.util;
 
-import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
 import com.peak.morrigan.impl.cca.entity.roots.RootsEmitterComponent;
-import com.peak.morrigan.impl.cca.entity.roots.RootsVictimComponent;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
 import com.peak.morrigan.impl.index.MorriganParticles;
 import com.peak.morrigan.impl.index.MorriganStatusEffects;
-import net.fabricmc.fabric.impl.client.model.loading.BlockStatesLoaderHooks;
+import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -16,7 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
 /**
@@ -61,7 +58,9 @@ public class MorriganKeybindingsManager {
                             MorriganAshProfiles.PROFILES.getFirst()
             );
 
-            ModUtils.getCultistInstance(player).setKeybindCooldownTicks(50);
+            player.sendMessage(Text.literal(MiscUtils.formatString(profile.getCurrentProfile().id())).withColor(profile.getCurrentProfile().color()), true);
+
+            ModUtils.getCultistInstance(player).setKeybindCooldownTicks(10);
         } else {
             if (profile.getCurrentProfile().hasAbility()) {
                 if (profile.getCurrentProfile() == MorriganAshProfiles.FLORACIDE) {
@@ -78,6 +77,7 @@ public class MorriganKeybindingsManager {
                         player.sendMessage(Text.of(target.getNameForScoreboard()), true);
 
                         lock.setTicks(90);
+                        player.sendMessage(Text.of(lock.getTicks() + ""), false);
                     } else {
 
                     }

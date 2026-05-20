@@ -121,7 +121,7 @@ public class CultDisplayScreen extends Screen {
 
                 context.drawCenteredTextWithShadow(
                         this.textRenderer,
-                        Text.translatable("morrigan.cult_screen.heretic"),
+                        Text.translatable("morrigan.cult_screen.heretic").withColor(0xFF690f0f),
                         context.getScaledWindowWidth() / 2,
                         (context.getScaledWindowHeight() / 2 + potentialOffset),
                         0xffffff
@@ -133,7 +133,7 @@ public class CultDisplayScreen extends Screen {
 
                     context.drawCenteredTextWithShadow(
                             this.textRenderer,
-                            Text.literal(heretic.name()),
+                            Text.literal(heretic.name()).withColor(0xFF690f0f),
                             context.getScaledWindowWidth() / 2,
                             context.getScaledWindowHeight() / 2 + (20 + potentialOffset) + (index * 7),
                             0xffffff

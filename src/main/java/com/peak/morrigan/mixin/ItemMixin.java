@@ -1,6 +1,8 @@
 package com.peak.morrigan.mixin;
 
+import com.peak.morrigan.impl.index.MorriganBlocks;
 import com.peak.morrigan.impl.index.MorriganItems;
+import com.peak.morrigan.impl.util.ModUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,20 +28,69 @@ public abstract class ItemMixin {
         if (player == null) return;
 
         ItemStack stack = player.getStackInHand(context.getHand());
+        if (context.getWorld().getBlockState(context.getBlockPos()).isOf(MorriganBlocks.RITUAL_TABLE)) {
+            if (ModUtils.getCultistInstance(player).isCultist()) {
+                if (player.isSneaking()) {
+                    if (stack.isOf(Items.PAPER)) {
+                        stack.split(1);
+                        player.giveItemStack(new ItemStack(MorriganItems.SCRYING_PAPER));
 
-        if (stack.isOf(Items.PAPER)) {
-            if (player.isSneaking()) {
-                stack.split(1);
-                player.giveItemStack(new ItemStack(MorriganItems.SCRYING_PAPER));
+                        if (player.getWorld().isClient()) {
+                            player.swingHand(context.getHand());
+                            player.playSoundToPlayer(
+                                    SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE,
+                                    SoundCategory.BLOCKS,
+                                    1,
+                                    1
+                            );
+                        }
+                    }
 
-                if (player.getWorld().isClient()) {
-                    player.swingHand(context.getHand());
-                    player.playSoundToPlayer(
-                            SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE,
-                            SoundCategory.BLOCKS,
-                            1,
-                            1
-                    );
+                    if (stack.isOf(Items.STICK)) {
+                        stack.split(1);
+                        player.giveItemStack(new ItemStack(MorriganItems.DREAMCATCHER));
+
+                        if (player.getWorld().isClient()) {
+                            player.swingHand(context.getHand());
+
+                            player.playSoundToPlayer(
+                                    SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT,
+                                    SoundCategory.BLOCKS,
+                                    1,
+                                    1
+                            );
+                        }
+                    }
+
+                    if (stack.isOf(Items.AMETHYST_SHARD)) {
+                        stack.split(1);
+                        player.giveItemStack(new ItemStack(MorriganItems.CITADEL_ITEM));
+
+                        if (player.getWorld().isClient()) {
+                            player.swingHand(context.getHand());
+
+                            player.playSoundToPlayer(
+                                    SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME,
+                                    SoundCategory.BLOCKS,
+                                    1,
+                                    1
+                            );
+
+                            player.playSoundToPlayer(
+                                    SoundEvents.BLOCK_AMETHYST_BLOCK_RESONATE,
+                                    SoundCategory.BLOCKS,
+                                    1,
+                                    1
+                            );
+
+                            player.playSoundToPlayer(
+                                    SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK,
+                                    SoundCategory.BLOCKS,
+                                    1,
+                                    1
+                            );
+                        }
+                    }
                 }
             }
         }

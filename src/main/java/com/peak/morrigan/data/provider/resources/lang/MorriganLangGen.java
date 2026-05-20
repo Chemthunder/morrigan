@@ -97,6 +97,10 @@ public class MorriganLangGen extends FabricLanguageProvider {
         translationBuilder.add("morrigan.midnightconfig.title", "Morrigan");
         translationBuilder.add("morrigan.midnightconfig.wavyText", "Wavy Text");
         translationBuilder.add("morrigan.midnightconfig.indicatorY", "Y-Position of Keybind Indicator");
+
+        // OTHER
+        translationBuilder.add("death.cleaver", "%s was indoctrinated by %s");
+        translationBuilder.add("death.acheron", "%s had their world ripped apart by %s");
     }
 
     public static void registerOath(TranslationBuilder translationBuilder, Oath oath, String title, String description) {

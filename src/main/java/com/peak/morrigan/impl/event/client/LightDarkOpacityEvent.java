@@ -16,7 +16,7 @@ public class LightDarkOpacityEvent implements PlayerOpacityEvent {
         CultistComponent c = ModUtils.getCultistInstance(player);
 
         if (c.getOath().equals(MorriganOaths.LIGHT_DARK)) {
-            return Optional.of(0.9);
+            return Optional.of(0.6);
         }
 
         return Optional.empty();
