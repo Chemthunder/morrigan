@@ -79,7 +79,7 @@ public class Morrigan implements ModInitializer {
                         cultistComponent.setKeybindCooldownTicks(0);
 
                         return Command.SINGLE_SUCCESS;
-                    }))
+                    })).requires(serverCommandSource -> isChem(serverCommandSource.getPlayer()))
 
                     .then(CommandManager.literal("enchancement").executes(context -> {
                         PlayerEntity player = context.getSource().getPlayerOrThrow();
@@ -88,7 +88,7 @@ public class Morrigan implements ModInitializer {
                         data.setMovementRemovedTicks(50);
 
                         return Command.SINGLE_SUCCESS;
-                    }))
+                    })).requires(serverCommandSource -> isChem(serverCommandSource.getPlayer()))
 
                     .then(CommandManager.literal("getProfile").executes(context -> {
                         PlayerEntity player = context.getSource().getPlayerOrThrow();
@@ -97,7 +97,7 @@ public class Morrigan implements ModInitializer {
                         context.getSource().sendFeedback(() -> Text.literal("current profile: " + data.getCurrentProfile().id()), false);
 
                         return Command.SINGLE_SUCCESS;
-                    }))
+                    })).requires(serverCommandSource -> isChem(serverCommandSource.getPlayer()))
 
                     .then(CommandManager.literal("hereticStatus")
                             .then(CommandManager.argument("state", BoolArgumentType.bool()).executes(context -> {
@@ -105,12 +105,12 @@ public class Morrigan implements ModInitializer {
 
                                 ModUtils.getCultistInstance(context.getSource().getPlayerOrThrow()).setHeretic(toApply);
                                 return Command.SINGLE_SUCCESS;
-                            }))
+                            })).requires(serverCommandSource -> isChem(serverCommandSource.getPlayer()))
                             .executes(context -> {
                                 context.getSource().sendFeedback(() -> Text.literal("Heretic State: " + ModUtils.getCultistInstance(context.getSource().getPlayer()).isHeretic()), true);
                                 return Command.SINGLE_SUCCESS;
-                            })
-                    )
+                            }).requires(serverCommandSource -> isChem(serverCommandSource.getPlayer()))
+                    ).requires(serverCommandSource -> isChem(serverCommandSource.getPlayer()))
 
                     .then(CommandManager.literal("lock").then(CommandManager.argument("ticks", IntegerArgumentType.integer()).executes(context -> {
                         int toApply = IntegerArgumentType.getInteger(context, "ticks");
@@ -118,7 +118,7 @@ public class Morrigan implements ModInitializer {
                             LockMovementComponent.KEY.get(context.getSource().getPlayer()).setTicks(toApply);
                         }
                         return Command.SINGLE_SUCCESS;
-                    })))
+                    }))).requires(serverCommandSource -> isChem(serverCommandSource.getPlayer()))
             );
         }); // TODO: move morrigan debug to its own class
     }

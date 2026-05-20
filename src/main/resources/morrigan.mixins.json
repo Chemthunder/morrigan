@@ -7,7 +7,6 @@
     "ItemMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
-    "ServerPlayerEntityMixin",
     "compat.enchancement.AirJumpComponentMixin",
     "compat.enchancement.DirectionBurstComponentMixin",
     "compat.enchancement.RotationBurstComponentMixin",
