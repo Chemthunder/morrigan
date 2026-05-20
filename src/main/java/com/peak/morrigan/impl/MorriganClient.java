@@ -3,10 +3,13 @@ package com.peak.morrigan.impl;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.component.StoredOathComponent;
 import com.peak.morrigan.impl.event.client.CultistKeybindIndicatorEvent;
+import com.peak.morrigan.impl.event.client.LightDarkOpacityEvent;
 import com.peak.morrigan.impl.index.*;
+import net.acoyt.acornlib.api.event.PlayerOpacityEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * @author Chemthunder
@@ -47,5 +50,6 @@ public class MorriganClient implements ClientModInitializer {
         }, MorriganItems.SCRYING_PAPER);
 
         HudRenderCallback.EVENT.register(new CultistKeybindIndicatorEvent());
+        PlayerOpacityEvent.EVENT.register(new LightDarkOpacityEvent());
     }
 }

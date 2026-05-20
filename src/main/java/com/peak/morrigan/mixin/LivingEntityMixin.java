@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
+import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
@@ -103,9 +104,27 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
 
     @WrapMethod(method = "applyMovementInput")
     private Vec3d morrigan$slipperiness(Vec3d movementInput, float slipperiness, Operation<Vec3d> original) {
-        if (AshProfileComponent.KEY.get(this).getCurrentProfile().equals(MorriganAshProfiles.CRYOCIDE)) {
-            return original.call(movementInput, slipperiness / 2);
+        if ((Object) this instanceof PlayerEntity player) {
+            if (AshProfileComponent.KEY.get(player).getCurrentProfile().equals(MorriganAshProfiles.CRYOCIDE)) {
+                return original.call(movementInput, slipperiness / 2);
+            }
         }
         return original.call(movementInput, slipperiness);
+    }
+
+    @WrapMethod(method = "applyMovementInput")
+    private Vec3d morrigan$lockMovement(Vec3d movementInput, float slipperiness, Operation<Vec3d> original) {
+        if (LockMovementComponent.KEY.get(this).getTicks() > 0) {
+            return Vec3d.ZERO;
+        }
+        return original.call(movementInput, slipperiness);
+    }
+
+    @WrapMethod(method = "applyFluidMovingSpeed")
+    private Vec3d morrigan$lockFluidSpeed(double gravity, boolean falling, Vec3d motion, Operation<Vec3d> original) {
+        if (LockMovementComponent.KEY.get(this).getTicks() > 0) {
+            return Vec3d.ZERO;
+        }
+        return original.call(gravity, falling, motion);
     }
 }

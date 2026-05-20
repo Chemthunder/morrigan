@@ -74,6 +74,8 @@ public class MorriganLangGen extends FabricLanguageProvider {
                 "Through light and dark, we shine forward."
         );
 
+        translationBuilder.add("oath.morrigan.returning_roots.heads_up", "Emitting : %s");
+
         // ASHPROFILE
         registerAshProfile(translationBuilder, MorriganAshProfiles.CRYOCIDE,
                 "Cold Feet?"

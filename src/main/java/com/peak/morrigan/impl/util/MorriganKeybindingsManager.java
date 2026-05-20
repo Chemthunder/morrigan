@@ -2,10 +2,13 @@ package com.peak.morrigan.impl.util;
 
 import com.nitron.nitrogen.util.interfaces.ScreenShaker;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
-import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
+import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
+import com.peak.morrigan.impl.cca.entity.roots.RootsEmitterComponent;
+import com.peak.morrigan.impl.cca.entity.roots.RootsVictimComponent;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
 import com.peak.morrigan.impl.index.MorriganParticles;
 import com.peak.morrigan.impl.index.MorriganStatusEffects;
+import net.fabricmc.fabric.impl.client.model.loading.BlockStatesLoaderHooks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -21,24 +24,12 @@ import net.minecraft.world.World;
  */
 public class MorriganKeybindingsManager {
     public static void morrigan$returningroots(PlayerEntity player, World world) {
-        world.getEntitiesByClass(
-                PlayerEntity.class,
-                new Box(
-                        player.getBlockPos()
-                ).expand(15),
-                entity -> true
-        ).forEach(capture -> {
-            EnchancementDataComponent data = EnchancementDataComponent.KEY.get(capture);
-
-            data.setMovementRemovedTicks(120);
-
-            if (capture instanceof ScreenShaker shaker) {
-                shaker.addScreenShake(0.5f, 10);
-            }
-        });
+        RootsEmitterComponent emitter = RootsEmitterComponent.KEY.get(player);
+        emitter.setEmitting(!emitter.isEmitting());
 
         if (world.isClient()) {
             player.swingHand(player.getActiveHand());
+            player.sendMessage(Text.translatable("oath.morrigan.returning_roots.heads_up", emitter.isEmitting()), true);
         }
 
         if (world instanceof ServerWorld serverWorld) {
@@ -76,12 +67,17 @@ public class MorriganKeybindingsManager {
                 if (profile.getCurrentProfile() == MorriganAshProfiles.FLORACIDE) {
                     LivingEntity target = null;
 
+
                     if (MinecraftClient.getInstance().targetedEntity instanceof LivingEntity entity) {
                         target = entity;
                     }
 
                     if (target != null) {
+                        LockMovementComponent lock = LockMovementComponent.KEY.get(target);
+
                         player.sendMessage(Text.of(target.getNameForScoreboard()), true);
+
+                        lock.setTicks(90);
                     } else {
 
                     }

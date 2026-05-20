@@ -1,4 +1,4 @@
-package com.peak.morrigan.impl.cca.entity;
+package com.peak.morrigan.impl.cca.entity.roots;
 
 import com.peak.morrigan.impl.Morrigan;
 import net.acoyt.acornlib.api.util.MiscUtils;
@@ -11,15 +11,14 @@ import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 /**
  * @author Chemthunder
- * Allows controlling of Enchancement enchantments.
  */
-public class EnchancementDataComponent implements AutoSyncedComponent, CommonTickingComponent {
-    public static final ComponentKey<EnchancementDataComponent> KEY = MiscUtils.getOrCreateKey(Morrigan.id("enchancement_data"), EnchancementDataComponent.class);
+public class RootsVictimComponent implements AutoSyncedComponent, CommonTickingComponent {
+    public static final ComponentKey<RootsVictimComponent> KEY = MiscUtils.getOrCreateKey(Morrigan.id("roots_victim"), RootsVictimComponent.class);
     private final PlayerEntity player;
 
     private int movementRemovedTicks = 0;
 
-    public EnchancementDataComponent(PlayerEntity player) {
+    public RootsVictimComponent(PlayerEntity player) {
         this.player = player;
     }
 
@@ -37,7 +36,7 @@ public class EnchancementDataComponent implements AutoSyncedComponent, CommonTic
     }
 
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
-        this.movementRemovedTicks = nbt.getInt("MovementRemovedTicks");
+        this.movementRemovedTicks = nbt.getInt("MovementRemovedTicks");;
     }
 
     public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
@@ -48,8 +47,8 @@ public class EnchancementDataComponent implements AutoSyncedComponent, CommonTic
         return this.movementRemovedTicks;
     }
 
-    public void setMovementRemovedTicks(int i) {
-        this.movementRemovedTicks = i;
+    public void setMovementRemovedTicks(int movementRemovedTicks) {
+        this.movementRemovedTicks = movementRemovedTicks;
         this.sync();
     }
 }

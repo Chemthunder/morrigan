@@ -2,7 +2,7 @@ package com.peak.morrigan.mixin.compat.enchancement;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
+import com.peak.morrigan.impl.cca.entity.roots.RootsVictimComponent;
 import moriyashiine.enchancement.common.component.entity.AirJumpComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Final;
@@ -20,7 +20,7 @@ public abstract class AirJumpComponentMixin {
     private void morrigan$denyGale(Operation<Void> original) {
         PlayerEntity player = this.obj;
 
-        if (EnchancementDataComponent.KEY.get(player).getMovementRemovedTicks() <= 0) {
+        if (RootsVictimComponent.KEY.get(player).getMovementRemovedTicks() <= 0) {
             original.call();
         }
     }

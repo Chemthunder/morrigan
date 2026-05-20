@@ -1,6 +1,7 @@
 package com.peak.morrigan.impl.cca.entity;
 
 import com.peak.morrigan.impl.Morrigan;
+import com.peak.morrigan.impl.cca.entity.roots.RootsVictimComponent;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +30,7 @@ public class InBoxComponent implements AutoSyncedComponent, CommonTickingCompone
             this.inBoxTicks--;
 
             if (this.living instanceof PlayerEntity player) {
-                EnchancementDataComponent.KEY.get(player).setMovementRemovedTicks(90);
+                RootsVictimComponent.KEY.get(player).setMovementRemovedTicks(90);
             }
 
             if (!this.inBox) {

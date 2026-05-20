@@ -4,11 +4,13 @@ import com.everest.hibiscus.api.modules.rendering.text.HibiscusPresetEffects;
 import com.everest.hibiscus.api.modules.rendering.text.registry.TextEffectManager;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
-import com.peak.morrigan.impl.cca.entity.EnchancementDataComponent;
+import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
+import com.peak.morrigan.impl.cca.entity.roots.RootsVictimComponent;
 import com.peak.morrigan.impl.index.*;
 import com.peak.morrigan.impl.util.ModUtils;
 import com.peak.morrigan.impl.util.MorriganKeybindings;
@@ -24,6 +26,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Chemthunder
@@ -77,7 +82,7 @@ public class Morrigan implements ModInitializer {
 
                     .then(CommandManager.literal("enchancement").executes(context -> {
                         PlayerEntity player = context.getSource().getPlayerOrThrow();
-                        EnchancementDataComponent data = EnchancementDataComponent.KEY.get(player);
+                        RootsVictimComponent data = RootsVictimComponent.KEY.get(player);
 
                         data.setMovementRemovedTicks(50);
 
@@ -105,6 +110,14 @@ public class Morrigan implements ModInitializer {
                                 return Command.SINGLE_SUCCESS;
                             })
                     )
+
+                    .then(CommandManager.literal("lock").then(CommandManager.argument("ticks", IntegerArgumentType.integer()).executes(context -> {
+                        int toApply = IntegerArgumentType.getInteger(context, "ticks");
+                        if (context.getSource().getPlayer() != null) {
+                            LockMovementComponent.KEY.get(context.getSource().getPlayer()).setTicks(toApply);
+                        }
+                        return Command.SINGLE_SUCCESS;
+                    })))
             );
         }); // TODO: move morrigan debug to its own class
     }
@@ -124,6 +137,11 @@ public class Morrigan implements ModInitializer {
     public static boolean isChem(Entity entity) {
         return entity != null && (entity.getUuidAsString().equals("a26e29f1-532e-4116-9112-ca18ea30d27f"));
     }
+
+    public static final List<UUID> OPERATORS = List.of(
+            UUID.fromString("65f16471-eb78-4b7e-9130-7f01e5157236"),
+            UUID.fromString("5eb7c6ed-3a92-40e4-a319-610b613732c5")
+    );
 }
 
 /**
