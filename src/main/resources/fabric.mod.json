@@ -61,6 +61,7 @@
       "morrigan:in_box",
 
       "morrigan:lock_movement",
+      "morrigan:light_dark",
 
       "morrigan:roots_victim",
       "morrigan:roots_emitter"

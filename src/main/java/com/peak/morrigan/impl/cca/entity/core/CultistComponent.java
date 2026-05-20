@@ -2,7 +2,6 @@ package com.peak.morrigan.impl.cca.entity.core;
 
 import com.peak.morrigan.api.Oath;
 import com.peak.morrigan.impl.Morrigan;
-import com.peak.morrigan.impl.index.MorriganOaths;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -22,6 +21,8 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
 
     private boolean cultist = false;
     private boolean heretic = false;
+
+    private boolean dev = true;
 
     private Oath swornOath = Oath.EMPTY;
     private String leader = "";
@@ -45,15 +46,19 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
             }
         }
 
-        if (Morrigan.isChem(this.player)) {
-            if (!this.isCultist()) {
-                this.setCultist(true);
-                this.swearOath(MorriganOaths.PRIESTESS_GAZE);
-            }
-        }
+//        if (!this.dev) {
+//            if (Morrigan.isChem(this.player)) {
+//                if (!this.isCultist()) {
+//                    this.setCultist(true);
+//                    this.swearOath(MorriganOaths.PRIESTESS_GAZE);
+//                }
+//            }
+//        }
     }
 
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
+        this.dev = nbt.getBoolean("Dev");
+
         this.cultist = nbt.getBoolean("Cultist");
         this.heretic = nbt.getBoolean("Heretic");
         this.leader = nbt.getString("Leader");
@@ -67,6 +72,8 @@ public class CultistComponent implements AutoSyncedComponent, CommonTickingCompo
     }
 
     public void writeToNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
+        nbt.putBoolean("Dev", dev);
+
         nbt.putBoolean("Cultist", cultist);
         nbt.putBoolean("Heretic", heretic);
         nbt.putString("Leader", leader);

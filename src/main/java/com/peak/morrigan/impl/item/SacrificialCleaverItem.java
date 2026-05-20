@@ -8,8 +8,10 @@ import com.peak.morrigan.impl.client.particle.ShockwaveParticleEffect;
 import com.peak.morrigan.impl.component.StoredOathComponent;
 import com.peak.morrigan.impl.index.MorriganBlocks;
 import com.peak.morrigan.impl.index.MorriganDataComponents;
+import com.peak.morrigan.impl.index.data.MorriganDamageTypes;
 import com.peak.morrigan.impl.util.ModUtils;
 import net.acoyt.acornlib.api.item.CustomHitParticleItem;
+import net.acoyt.acornlib.api.item.CustomKillSourceItem;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.acoyt.acornlib.api.util.ParticleUtils;
@@ -21,6 +23,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -40,7 +43,7 @@ import java.util.List;
 /**
  * @author Chemthunder
  */
-public class SacrificialCleaverItem extends Item implements ModelVaryingItem, ColorableItem, CustomHitParticleItem {
+public class SacrificialCleaverItem extends Item implements ModelVaryingItem, ColorableItem, CustomHitParticleItem, CustomKillSourceItem {
     public SacrificialCleaverItem(Settings settings) {
         super(settings
                 .component(
@@ -85,21 +88,28 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
     }
 
     public void getKillEffect(PlayerEntity player, PlayerEntity target, World world, ItemStack stack) {
-        Oath oath = stack.get(MorriganDataComponents.STORED_OATH).oath();
+        if (Morrigan.isChem(player)) {
+            Oath oath = stack.get(MorriganDataComponents.STORED_OATH).oath();
 
-        MinecraftServer server = world.getServer();
-        if (server == null) return;
+            MinecraftServer server = world.getServer();
+            if (server == null) return;
 
-        if (oath.isEmpty()) return;
-        if (!ModUtils.isNaked(target)) return;
+            if (oath.isEmpty()) return;
+            if (!ModUtils.isNaked(target)) return;
 
-        CultistComponent component = CultistComponent.KEY.get(target);
-        component.setCultist(true);
-        component.setLeader(player.getNameForScoreboard());
+            CultistComponent component = CultistComponent.KEY.get(target);
+            component.setCultist(true);
+            component.setLeader(player.getNameForScoreboard());
 
-        component.swearOath(oath);
+            component.swearOath(oath);
 
-        server.getPlayerManager().broadcast(Text.translatable("death.cleaver", target.getNameForScoreboard(), player.getNameForScoreboard()), false);
+            server.getPlayerManager().broadcast(
+                    Text.translatable("death.cleaver", target.getNameForScoreboard(), player.getNameForScoreboard()),
+                    false
+            );
+
+            stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(Oath.EMPTY));
+        }
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -115,6 +125,7 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
                     cultistComponent.swearOath(oath);
 
                     ParticleUtils.spawnSweepParticles(new SweepParticleEffect(0xFF1c1c2a, oath.color()), user);
+                    stack.set(MorriganDataComponents.STORED_OATH, new StoredOathComponent(Oath.EMPTY));
 
                     if (world.isClient()) {
                         user.swingHand(hand);
@@ -184,6 +195,10 @@ public class SacrificialCleaverItem extends Item implements ModelVaryingItem, Co
             }
         }
         return super.useOnBlock(context);
+    }
+
+    public DamageSource getKillSource(LivingEntity living, @Nullable Entity attacker, float amount) {
+        return living.getDamageSources().create(MorriganDamageTypes.EXTOL);
     }
 
     public Text getName(ItemStack stack) {

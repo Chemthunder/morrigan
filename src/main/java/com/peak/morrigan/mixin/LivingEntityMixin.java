@@ -103,16 +103,6 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     }
 
     @WrapMethod(method = "applyMovementInput")
-    private Vec3d morrigan$slipperiness(Vec3d movementInput, float slipperiness, Operation<Vec3d> original) {
-        if ((Object) this instanceof PlayerEntity player) {
-            if (AshProfileComponent.KEY.get(player).getCurrentProfile().equals(MorriganAshProfiles.CRYOCIDE)) {
-                return original.call(movementInput, slipperiness / 2);
-            }
-        }
-        return original.call(movementInput, slipperiness);
-    }
-
-    @WrapMethod(method = "applyMovementInput")
     private Vec3d morrigan$lockMovement(Vec3d movementInput, float slipperiness, Operation<Vec3d> original) {
         if (LockMovementComponent.KEY.get(this).getTicks() > 0) {
             return Vec3d.ZERO;

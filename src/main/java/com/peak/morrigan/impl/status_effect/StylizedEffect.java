@@ -9,20 +9,20 @@ import net.minecraft.util.Identifier;
 /**
  * @author Chemthunder
  */
-public class RampageStatusEffect extends StatusEffect implements StatusEffectBackground {
-    public RampageStatusEffect(StatusEffectCategory category, int color) {
+public class StylizedEffect extends StatusEffect implements StatusEffectBackground {
+    public StylizedEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
 
     public Identifier smallInventorySprite() {
-        return Morrigan.id("effect/folly_small");
+        return Morrigan.id("effect/" + this.getName().getString().toLowerCase() + "_small");
     }
 
     public Identifier largeInventorySprite() {
-        return Morrigan.id("effect/folly_large");
+        return Morrigan.id("effect/" + this.getName().getString().toLowerCase() + "_large");
     }
 
     public Identifier hudSprite() {
-        return Morrigan.id("effect/folly_bg");
+        return Morrigan.id("effect/" + this.getName().getString().toLowerCase() + "_bg");
     }
 }

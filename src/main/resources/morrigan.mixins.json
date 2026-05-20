@@ -21,6 +21,7 @@
   },
   "client": [
     "client.AbstractInventoryScreenMixin",
+    "client.EntityRenderDispatcherMixin",
     "client.InGameHudMixin"
   ]
 }

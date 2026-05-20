@@ -76,6 +76,7 @@ public class Morrigan implements ModInitializer {
                         cultistComponent.setLeader("");
                         cultistComponent.setCultist(false);
                         cultistComponent.swearOath(Oath.EMPTY);
+                        cultistComponent.setKeybindCooldownTicks(0);
 
                         return Command.SINGLE_SUCCESS;
                     }))

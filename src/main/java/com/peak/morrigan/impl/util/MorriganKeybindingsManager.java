@@ -1,6 +1,7 @@
 package com.peak.morrigan.impl.util;
 
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
+import com.peak.morrigan.impl.cca.entity.LightDarkComponent;
 import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
 import com.peak.morrigan.impl.cca.entity.roots.RootsEmitterComponent;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
@@ -10,6 +11,7 @@ import net.acoyt.acornlib.api.util.MiscUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -79,7 +81,8 @@ public class MorriganKeybindingsManager {
                         lock.setTicks(90);
                         player.sendMessage(Text.of(lock.getTicks() + ""), false);
                     } else {
-
+                        LockMovementComponent lock = LockMovementComponent.KEY.get(player);
+                        lock.setTicks(90);
                     }
                 }
 
@@ -130,7 +133,7 @@ public class MorriganKeybindingsManager {
                         );
                     }
 
-             //       ModUtils.getCultistInstance(player).setKeybindCooldownTicks(4800);
+                    ModUtils.getCultistInstance(player).setKeybindCooldownTicks(4800);
                 }
             }
         }
@@ -142,11 +145,28 @@ public class MorriganKeybindingsManager {
 
     public static void morrigan$lightDark(PlayerEntity player, World world) {
         if (world.isDay()) {
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.STRENGTH,
+                    600,
+                    1
+            ));
 
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.RESISTANCE,
+                    600,
+                    1
+            ));
+
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.SLOWNESS,
+                    600,
+                    1
+            ));
+
+            ModUtils.getCultistInstance(player).setKeybindCooldownTicks(900);
         } else {
-
+            LightDarkComponent.KEY.get(player).setInvis(!LightDarkComponent.KEY.get(player).isInvis());
+            ModUtils.getCultistInstance(player).setKeybindCooldownTicks(50);
         }
-
-        ModUtils.getCultistInstance(player).setKeybindCooldownTicks(500);
     }
 }

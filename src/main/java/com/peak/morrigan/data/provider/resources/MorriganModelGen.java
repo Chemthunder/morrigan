@@ -21,8 +21,6 @@ public class MorriganModelGen extends FabricModelProvider {
     }
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(MorriganItems.DREAMCATCHER, Models.GENERATED);
-        itemModelGenerator.register(MorriganItems.ACHERON, Models.GENERATED);
         itemModelGenerator.register(MorriganItems.CITADEL_ITEM, Models.GENERATED);
     }
 }

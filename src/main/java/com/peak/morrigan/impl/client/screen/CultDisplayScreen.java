@@ -1,7 +1,6 @@
 package com.peak.morrigan.impl.client.screen;
 
 import com.peak.morrigan.api.Oath;
-import com.peak.morrigan.compat.MorriganConfig;
 import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;

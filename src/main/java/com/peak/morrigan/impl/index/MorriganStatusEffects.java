@@ -1,8 +1,7 @@
 package com.peak.morrigan.impl.index;
 
 import com.peak.morrigan.impl.Morrigan;
-import com.peak.morrigan.impl.status_effect.FearfulStatusEffect;
-import com.peak.morrigan.impl.status_effect.RampageStatusEffect;
+import com.peak.morrigan.impl.status_effect.StylizedEffect;
 import net.acoyt.acornlib.api.registrants.StatusEffectRegistrant;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -19,7 +18,7 @@ public interface MorriganStatusEffects {
 
     RegistryEntry<StatusEffect> RAMPAGE = STATUS_EFFECTS.registerRef(
             "rampage",
-            new RampageStatusEffect(
+            new StylizedEffect(
                     StatusEffectCategory.NEUTRAL,
                     0xFF882020
             )
@@ -39,7 +38,7 @@ public interface MorriganStatusEffects {
 
     RegistryEntry<StatusEffect> FEARFUL = STATUS_EFFECTS.registerRef(
             "fearful",
-            new FearfulStatusEffect(
+            new StylizedEffect(
                     StatusEffectCategory.NEUTRAL,
                     0xFF002f5c
             )

@@ -2,6 +2,7 @@ package com.peak.morrigan.impl.cca;
 
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.InBoxComponent;
+import com.peak.morrigan.impl.cca.entity.LightDarkComponent;
 import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.cca.entity.roots.RootsEmitterComponent;
@@ -40,6 +41,12 @@ public class MorriganComponents implements EntityComponentInitializer, WorldComp
         registry.registerForPlayers(
                 AshProfileComponent.KEY,
                 AshProfileComponent::new,
+                RespawnCopyStrategy.NEVER_COPY
+        );
+
+        registry.registerForPlayers(
+                LightDarkComponent.KEY,
+                LightDarkComponent::new,
                 RespawnCopyStrategy.NEVER_COPY
         );
 

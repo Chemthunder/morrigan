@@ -46,8 +46,6 @@ public interface MorriganItemGroups {
             itemGroup.add(scryingPaperVariant);
         }
 
-        itemGroup.add(MorriganItems.DREAMCATCHER);
-        itemGroup.add(MorriganItems.ACHERON);
         itemGroup.add(MorriganItems.CITADEL_ITEM);
         itemGroup.add(MorriganItems.TABLE_ITEM);
     }

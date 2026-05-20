@@ -4,9 +4,11 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.peak.morrigan.impl.cca.entity.AshProfileComponent;
 import com.peak.morrigan.impl.cca.entity.InBoxComponent;
+import com.peak.morrigan.impl.cca.entity.LockMovementComponent;
 import com.peak.morrigan.impl.cca.entity.core.CultistComponent;
 import com.peak.morrigan.impl.index.MorriganAshProfiles;
 import com.peak.morrigan.impl.index.MorriganOaths;
+import com.peak.morrigan.impl.util.ModUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,6 +30,13 @@ public abstract class PlayerEntityMixin {
         if (CultistComponent.KEY.get(player).getOath().equals(MorriganOaths.PERSEVERING_WILL)) {
             if (target instanceof LivingEntity living) {
                 player.heal(living.getHealth() / 2);
+            }
+        }
+
+        if (AshProfileComponent.KEY.get(player).getCurrentProfile().equals(MorriganAshProfiles.CRYOCIDE)) {
+            if (target instanceof LivingEntity living) {
+                LockMovementComponent.KEY.get(living).setTicks(90);
+                ModUtils.getCultistInstance(player).setKeybindCooldownTicks(180);
             }
         }
     }

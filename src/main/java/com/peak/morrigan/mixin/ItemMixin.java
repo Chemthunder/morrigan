@@ -1,8 +1,8 @@
 package com.peak.morrigan.mixin;
 
+import com.peak.morrigan.impl.Morrigan;
 import com.peak.morrigan.impl.index.MorriganBlocks;
 import com.peak.morrigan.impl.index.MorriganItems;
-import com.peak.morrigan.impl.util.ModUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,13 +23,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ItemMixin {
 
     @Inject(method = "useOnBlock", at = @At(value = "HEAD"))
-    private void morrigan$paperBecomesScryingPaper(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
+    private void morrigan$paperBecomesScryingPaperAndSuch(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         PlayerEntity player = context.getPlayer();
         if (player == null) return;
 
         ItemStack stack = player.getStackInHand(context.getHand());
-        if (context.getWorld().getBlockState(context.getBlockPos()).isOf(MorriganBlocks.RITUAL_TABLE)) {
-            if (ModUtils.getCultistInstance(player).isCultist()) {
+        if (Morrigan.isChem(player)) {
+            if (context.getWorld().getBlockState(context.getBlockPos()).isOf(MorriganBlocks.RITUAL_TABLE)) {
                 if (player.isSneaking()) {
                     if (stack.isOf(Items.PAPER)) {
                         stack.split(1);
@@ -39,22 +39,6 @@ public abstract class ItemMixin {
                             player.swingHand(context.getHand());
                             player.playSoundToPlayer(
                                     SoundEvents.ENTITY_ZOMBIE_VILLAGER_CURE,
-                                    SoundCategory.BLOCKS,
-                                    1,
-                                    1
-                            );
-                        }
-                    }
-
-                    if (stack.isOf(Items.STICK)) {
-                        stack.split(1);
-                        player.giveItemStack(new ItemStack(MorriganItems.DREAMCATCHER));
-
-                        if (player.getWorld().isClient()) {
-                            player.swingHand(context.getHand());
-
-                            player.playSoundToPlayer(
-                                    SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT,
                                     SoundCategory.BLOCKS,
                                     1,
                                     1
@@ -85,6 +69,22 @@ public abstract class ItemMixin {
 
                             player.playSoundToPlayer(
                                     SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK,
+                                    SoundCategory.BLOCKS,
+                                    1,
+                                    1
+                            );
+                        }
+                    }
+
+                    if (stack.isOf(Items.IRON_AXE)) {
+                        stack.split(1);
+                        player.giveItemStack(new ItemStack(MorriganItems.SACRIFICIAL_CLEAVER));
+
+                        if (player.getWorld().isClient()) {
+                            player.swingHand(context.getHand());
+
+                            player.playSoundToPlayer(
+                                    SoundEvents.BLOCK_SMITHING_TABLE_USE,
                                     SoundCategory.BLOCKS,
                                     1,
                                     1
